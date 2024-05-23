@@ -5,4 +5,8 @@ public class ZonaDeEstacionamiento {
 
 	private ArrayList<PuntoDeVenta> puntoDeVenta = new ArrayList<PuntoDeVenta>();
 
+	public ArrayList<PuntoDeVenta> getPuntoDeVenta() {
+		return puntoDeVenta;
+	}
+
 }
