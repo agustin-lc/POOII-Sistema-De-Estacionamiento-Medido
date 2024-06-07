@@ -5,7 +5,18 @@ public class Usuario {
 	private Celular celular;
 	private Vehiculo vehiculo;
 
-}
+
+	
 //Métodos:
-//    iniciarEstacionamiento()
+
+	public void iniciarEstacionamientoManual(Estacionamiento estacionamiento,int horas) {
+		estacionamiento.zona.iniciarEstacionamiento(estacionamiento,this.vehiculo.getPatente(), horas);
+	}
+	
+	public void    iniciarEstacionamientoCelular() {
+	//celular.
+
+		
+	}
 //    finalizarEstacionamiento()
+}

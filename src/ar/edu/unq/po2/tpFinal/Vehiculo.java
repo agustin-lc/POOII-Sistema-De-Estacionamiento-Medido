@@ -6,5 +6,10 @@ public class Vehiculo {
 	public Vehiculo(String patente) {
 		this.patente = patente;
 	}
+
+	public String getPatente() {
+		// TODO Auto-generated method stub
+		return patente;
+	}
 	
 }
