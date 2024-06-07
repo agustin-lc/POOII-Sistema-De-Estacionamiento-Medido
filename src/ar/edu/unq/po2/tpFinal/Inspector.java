@@ -27,4 +27,12 @@ public class Inspector {
 	public int getCelular() {
 		return celular;
 	}
+	
+	public SistemaDeEstacionamientoMedido getSistema() {
+		return sem;
+	}
+	
+	public ZonaDeEstacionamiento getZonaAsignada() {
+		return zonaAsignada;
+	}
 }

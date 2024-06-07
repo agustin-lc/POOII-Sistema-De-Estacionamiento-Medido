@@ -5,6 +5,7 @@ public class Usuario {
 	private int celular;
 	private String patente;
 	private int saldo;
+	private ModalidadEstacionamiento modalidad;
 
 //Métodos:
 
@@ -32,5 +33,13 @@ public class Usuario {
 
 	public void setSaldo(int saldo) {
 		this.saldo = saldo;
+	}
+
+	public ModalidadEstacionamiento getModalidad() {
+		return modalidad;
+	}
+
+	public void setModalidad(ModalidadEstacionamiento modalidad) {
+		this.modalidad = modalidad;
 	}
 }
