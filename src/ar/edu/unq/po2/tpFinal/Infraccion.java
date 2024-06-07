@@ -31,4 +31,20 @@ public class Infraccion {
 		return patente;
 	}
 
+	public void setPatente(String patente) {
+		this.patente = patente;
+	}
+
+	public void setFechaInfraccion(LocalDateTime fechaInfraccion) {
+		this.fechaInfraccion = fechaInfraccion;
+	}
+
+	public void setInspector(Inspector inspector) {
+		this.inspector = inspector;
+	}
+
+	public void setZonaInfraccion(ZonaDeEstacionamiento zonaInfraccion) {
+		this.zonaInfraccion = zonaInfraccion;
+	}
+
 }
