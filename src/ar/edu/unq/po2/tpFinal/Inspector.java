@@ -13,26 +13,41 @@ public class Inspector {
 		this.sem = sem;
 	}
 
-	public boolean estacionamientoVigente(String patente) {
-		return sem.getZonasDeEstacionamientos().stream().anyMatch(s -> s.estacionamientoDePatente(patente));
+	public boolean validarEstacionamientoVigente(String patente) {
+		boolean poseeEstacionamiento = sem.poseeEstacionamientoVigente(patente);
+
+		if (!poseeEstacionamiento) {
+			this.generarInfraccion(patente);
+		}
+		return poseeEstacionamiento;
 	}
 
 	public void generarInfraccion(String patente) {
-		if (!this.estacionamientoVigente(patente)) {
-			Infraccion infraccion = new Infraccion(patente, LocalDate.now(), this, zonaAsignada);
-			sem.añadirInfraccion(infraccion);
-		}
+		this.sem.añadirInfraccion(patente, this);
 	}
 
 	public int getCelular() {
 		return celular;
 	}
-	
+
 	public SistemaDeEstacionamientoMedido getSistema() {
 		return sem;
 	}
-	
+
 	public ZonaDeEstacionamiento getZonaAsignada() {
 		return zonaAsignada;
 	}
+
+	public void setCelular(int celular) {
+		this.celular = celular;
+	}
+
+	public void setZonaAsignada(ZonaDeEstacionamiento zonaAsignada) {
+		this.zonaAsignada = zonaAsignada;
+	}
+
+	public void setSem(SistemaDeEstacionamientoMedido sem) {
+		this.sem = sem;
+	}
+
 }

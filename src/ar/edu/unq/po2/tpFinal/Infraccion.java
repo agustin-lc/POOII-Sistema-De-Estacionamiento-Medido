@@ -1,14 +1,14 @@
 package ar.edu.unq.po2.tpFinal;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Infraccion {
 	private String patente;
-	private LocalDate fechaInfraccion;
+	private LocalDateTime fechaInfraccion;
 	private Inspector inspector;
 	private ZonaDeEstacionamiento zonaInfraccion;
 
-	public Infraccion(String patente, LocalDate fecha, Inspector inspector, ZonaDeEstacionamiento zonaAsignada) {
+	public Infraccion(String patente, LocalDateTime fecha, Inspector inspector, ZonaDeEstacionamiento zonaAsignada) {
 		this.patente = patente;
 		this.fechaInfraccion = fecha;
 		this.inspector = inspector;
@@ -23,7 +23,7 @@ public class Infraccion {
 		return inspector;
 	}
 
-	public LocalDate getFechaInfraccion() {
+	public LocalDateTime getFechaInfraccion() {
 		return fechaInfraccion;
 	}
 
