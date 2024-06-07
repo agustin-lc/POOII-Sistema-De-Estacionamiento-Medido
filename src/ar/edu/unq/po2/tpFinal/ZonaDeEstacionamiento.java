@@ -15,7 +15,6 @@ public class ZonaDeEstacionamiento {
 		this.estacionamientos = new ArrayList<Estacionamiento>();
 		this.inspector = inspec;
 	}
-	
 
 	public List<PuntoDeVenta> getPuntoDeVenta() {
 		return puntosDeVentas;

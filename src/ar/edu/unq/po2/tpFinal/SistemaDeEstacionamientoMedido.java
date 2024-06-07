@@ -21,7 +21,7 @@ public class SistemaDeEstacionamientoMedido {
 	public List<ZonaDeEstacionamiento> getZonasDeEstacionamientos(){
 		return zonasDeEstacionamiento;
 	}
-	
+
 	public List<Integer> getCreditosDeCelulares(){
 		return null;
 		//realizar un map sobre lista de estacionamientos realizados
