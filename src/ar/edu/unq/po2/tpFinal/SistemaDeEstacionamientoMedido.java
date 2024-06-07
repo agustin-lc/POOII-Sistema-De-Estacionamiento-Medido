@@ -9,6 +9,7 @@ public class SistemaDeEstacionamientoMedido {
 	private int inicioFranja;
 	private int cierreFranja;
 	private List<ISuscriptor> suscriptores;
+	private List<Infraccion> infracciones;
 	
 	public List<Inspector> getInspectores() {
 		return zonasDeEstacionamiento.stream().map(zona -> zona.getInspector()).toList();
@@ -47,6 +48,11 @@ public class SistemaDeEstacionamientoMedido {
 
 	public int getCierreFranja() {
 		return cierreFranja;
+	}
+
+	public void añadirInfraccion(Infraccion infraccion) {
+		infracciones.add(infraccion);
+		
 	}
 
 }

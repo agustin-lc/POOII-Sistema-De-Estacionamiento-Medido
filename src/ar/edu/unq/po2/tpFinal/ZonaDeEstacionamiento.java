@@ -39,5 +39,9 @@ public class ZonaDeEstacionamiento {
 		// TODO Auto-generated method stub
 		estacionamientos.add(estacionamiento);
 	}
+	
+	public boolean estacionamientoDePatente(String patente) {
+		return estacionamientos.contains(patente);
+	}
 
 }
