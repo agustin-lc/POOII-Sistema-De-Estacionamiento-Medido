@@ -15,7 +15,7 @@ public class ZonaDeEstacionamiento {
 		return estacionamientos;
 	}
 
-	public void iniciarEstacionamiento(Estacionamiento estacionamiento,String patente, int horas) {
+	public void iniciarEstacionamiento(Estacionamiento estacionamiento,Object object, int horas) {
 		// TODO Auto-generated method stub
 		if (estacionamientos.contains(estacionamiento)) {
 			
@@ -26,5 +26,6 @@ public class ZonaDeEstacionamiento {
 		// TODO Auto-generated method stub
 		estacionamientos.add(estacionamiento);
 		}
+
 
 }

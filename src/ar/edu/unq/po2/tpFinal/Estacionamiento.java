@@ -3,7 +3,7 @@ package ar.edu.unq.po2.tpFinal;
 public class Estacionamiento {
 
 	String patenteEstacionada;
-	ZonaDeEstacionamiento zona;
+	public ZonaDeEstacionamiento zona;
 	
 	public Estacionamiento(ZonaDeEstacionamiento zona) {
 		super();

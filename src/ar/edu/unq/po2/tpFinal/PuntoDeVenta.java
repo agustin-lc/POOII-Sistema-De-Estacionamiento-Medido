@@ -4,8 +4,8 @@ public class PuntoDeVenta {
 
 
 
-	public void recargarCredito(Celular celular, double monto) {
-	    celular.recargarSaldo(monto);
+	public void recargarCredito(String celular, double monto) {
+	    //celular.recargarSaldo(monto);
 	    System.out.println("Se ha creditado el $" + monto);
 	}
 }
