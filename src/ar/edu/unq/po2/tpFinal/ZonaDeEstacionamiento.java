@@ -21,5 +21,9 @@ public class ZonaDeEstacionamiento {
 	public Inspector getInspector() {
 		return inspector;
 	}
+	
+	public void añadirPuntoVenta(PuntoDeVenta punto) {
+		puntosDeVentas.add(punto);
+	}
 
 }

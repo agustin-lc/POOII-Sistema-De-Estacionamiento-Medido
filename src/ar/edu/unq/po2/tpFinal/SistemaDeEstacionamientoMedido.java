@@ -3,16 +3,19 @@ package ar.edu.unq.po2.tpFinal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SistemaDeEstacionamientoMedido {
 
 	private List<ZonaDeEstacionamiento> zonasDeEstacionamiento = new ArrayList<ZonaDeEstacionamiento>();
-	private int inicioFranja;
-	private int cierreFranja;
+	private LocalDateTime inicioFranja;
+	private LocalDateTime cierreFranja;
 	private List<ISuscriptor> suscriptores;
 	private List<Infraccion> infracciones;
+	private List<Estacionamiento> estacionamientosRegistrados;
+	private double precioPorHora;
+	private List<Compra> comprasRegistradas;
 
-	private List<>
 	public List<Inspector> getInspectores() {
 		return zonasDeEstacionamiento.stream().map(zona -> zona.getInspector()).toList();
 	}
@@ -30,6 +33,23 @@ public class SistemaDeEstacionamientoMedido {
 		// realizar un map sobre lista de estacionamientos realizados
 	}
 
+	public LocalDateTime getInicioFranja() {
+		return inicioFranja;
+	}
+
+	public LocalDateTime getCierreFranja() {
+		return cierreFranja;
+	}
+
+	public List<Estacionamiento> getEstacionamientosVigentes() {
+		return estacionamientosRegistrados.stream().filter(e -> e.estaVigente(LocalDateTime.now()))
+				.collect(Collectors.toList());
+	}
+
+	public List<Infraccion> getInfracciones() {
+		return infracciones;
+	}
+
 	public void añadirSuscriptor(ISuscriptor suscriptor) {
 		this.suscriptores.add(suscriptor);
 	}
@@ -44,14 +64,6 @@ public class SistemaDeEstacionamientoMedido {
 		suscriptores.forEach(sub -> sub.notificar());
 	}
 
-	public int getInicioFranja() {
-		return inicioFranja;
-	}
-
-	public int getCierreFranja() {
-		return cierreFranja;
-	}
-
 	public void añadirInfraccion(String patente, Inspector inspec) {
 		LocalDateTime fechaYHoraActual = LocalDateTime.now();
 		ZonaDeEstacionamiento zonaInspector = inspec.getZonaAsignada();
@@ -59,14 +71,15 @@ public class SistemaDeEstacionamientoMedido {
 		infracciones.add(infraccion);
 	}
 
-	// public boolean poseeEstacionamientoVigente(String patente) {
-	// return this.getZonasDeEstacionamientos().stream().filter(est ->
-	// est.estacionamientoDePatente(patente)).toList()
-	// .isEmpty();
-	// }
-
-	public List<Infraccion> getInfracciones() {
-		return infracciones;
+	public boolean poseeEstacionamientoVigente(String patente) {
+		return this.estacionamientosRegistrados.stream().filter(est -> est.getPatente() == patente).toList().isEmpty();
 	}
 
+	public void finalizarEstacionamientos() {
+		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
+	}
+
+	public void añadirCompra(Compra compra) {
+		this.comprasRegistradas.add(compra);
+	}
 }

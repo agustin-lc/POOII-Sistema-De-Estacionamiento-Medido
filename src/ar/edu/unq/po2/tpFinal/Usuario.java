@@ -8,22 +8,22 @@ public class Usuario {
 	private ModalidadEstacionamiento modalidad;
 	private PuntoDeVenta p;
 //Métodos:
-<<<<<<< HEAD
+	// <<<<<<< HEAD
 // REVISAR
-	//public void iniciarEstacionamientoManual(Estacionamiento estacionamiento, int horas) {
-	//	estacionamiento.zona.iniciarEstacionamiento(estacionamiento, this.getPatente(), horas);
-	//}
-=======
+	// public void iniciarEstacionamientoManual(Estacionamiento estacionamiento, int
+	// horas) {
+	// estacionamiento.zona.iniciarEstacionamiento(estacionamiento,
+	// this.getPatente(), horas);
+	// }
 
 	public void iniciarEstacionamiento(PuntoDeVenta p) {
-		p.		
+		modalidad.iniciarEstacionamiento();
 	}
->>>>>>> refs/remotes/origin/main
+	// >>>>>>> refs/remotes/origin/main
 
 	public String getPatente() {
 		return patente;
 	}
-
 
 	public int getCelular() {
 		return celular;
