@@ -12,6 +12,7 @@ public class SistemaDeEstacionamientoMedido {
 	private List<ISuscriptor> suscriptores;
 	private List<Infraccion> infracciones;
 
+	private List<>
 	public List<Inspector> getInspectores() {
 		return zonasDeEstacionamiento.stream().map(zona -> zona.getInspector()).toList();
 	}

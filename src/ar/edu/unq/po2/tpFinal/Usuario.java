@@ -6,22 +6,24 @@ public class Usuario {
 	private String patente;
 	private int saldo;
 	private ModalidadEstacionamiento modalidad;
-
+	private PuntoDeVenta p;
 //Métodos:
+<<<<<<< HEAD
 // REVISAR
 	//public void iniciarEstacionamientoManual(Estacionamiento estacionamiento, int horas) {
 	//	estacionamiento.zona.iniciarEstacionamiento(estacionamiento, this.getPatente(), horas);
 	//}
+=======
 
-	private Object getPatente() {
+	public void iniciarEstacionamiento(PuntoDeVenta p) {
+		p.		
+	}
+>>>>>>> refs/remotes/origin/main
+
+	public String getPatente() {
 		return patente;
 	}
 
-	public void iniciarEstacionamientoCelular() {
-		// celular.
-
-	}
-//    finalizarEstacionamiento()
 
 	public int getCelular() {
 		return celular;
