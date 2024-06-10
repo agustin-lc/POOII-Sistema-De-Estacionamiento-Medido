@@ -8,10 +8,10 @@ public class Usuario {
 	private ModalidadEstacionamiento modalidad;
 
 //Métodos:
-
-	public void iniciarEstacionamientoManual(Estacionamiento estacionamiento, int horas) {
-		estacionamiento.zona.iniciarEstacionamiento(estacionamiento, this.getPatente(), horas);
-	}
+// REVISAR
+	//public void iniciarEstacionamientoManual(Estacionamiento estacionamiento, int horas) {
+	//	estacionamiento.zona.iniciarEstacionamiento(estacionamiento, this.getPatente(), horas);
+	//}
 
 	private Object getPatente() {
 		return patente;

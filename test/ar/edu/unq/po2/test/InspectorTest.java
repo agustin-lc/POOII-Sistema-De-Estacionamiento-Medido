@@ -71,7 +71,7 @@ class InspectorTest {
 	@Test
 	void testInspectorConsultaEstacionamientoVigenteCorrectamente() {
 		//when(inspector.validarEstacionamientoVigente(patente)).thenReturn(true);
-		when(sem.poseeEstacionamientoVigente(patente)).thenReturn(true);
+		//when(sem.poseeEstacionamientoVigente(patente)).thenReturn(true);
 		
 		boolean resultadoConsulta = inspector.validarEstacionamientoVigente(patente);
 		
@@ -81,7 +81,7 @@ class InspectorTest {
 
 	@Test
 	void testInspectorConsultaEstacionamientoVigenteYNoSeEncuentra() {
-		when(sem.poseeEstacionamientoVigente(patente)).thenReturn(false);		
+		//when(sem.poseeEstacionamientoVigente(patente)).thenReturn(false);		
 		boolean resultadoConsulta = inspector.validarEstacionamientoVigente(patente);
 		
 		assertFalse(resultadoConsulta);
@@ -96,7 +96,7 @@ class InspectorTest {
 
 		//assertTrue(sem.getInfracciones().size() > 0);
 	
-		when(sem.poseeEstacionamientoVigente(patente)).thenReturn(false);
+		//when(sem.poseeEstacionamientoVigente(patente)).thenReturn(false);
     	
     	inspector.validarEstacionamientoVigente(patente);
     	
@@ -105,7 +105,7 @@ class InspectorTest {
 
 	@Test
 	void testInspectorConsultaEstacionamientoVigenteYNoNotificaInfraccion() {
-		when(sem.poseeEstacionamientoVigente(patente)).thenReturn(true);
+		//when(sem.poseeEstacionamientoVigente(patente)).thenReturn(true);
     	
     	inspector.validarEstacionamientoVigente(patente);
     	

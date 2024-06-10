@@ -58,10 +58,11 @@ public class SistemaDeEstacionamientoMedido {
 		infracciones.add(infraccion);
 	}
 
-	public boolean poseeEstacionamientoVigente(String patente) {
-		return this.getZonasDeEstacionamientos().stream().filter(est -> est.estacionamientoDePatente(patente)).toList()
-				.isEmpty();
-	}
+	// public boolean poseeEstacionamientoVigente(String patente) {
+	// return this.getZonasDeEstacionamientos().stream().filter(est ->
+	// est.estacionamientoDePatente(patente)).toList()
+	// .isEmpty();
+	// }
 
 	public List<Infraccion> getInfracciones() {
 		return infracciones;

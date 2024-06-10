@@ -18,13 +18,8 @@ public class ZonaDeEstacionamiento {
 		return puntosDeVentas;
 	}
 
-
-
 	public Inspector getInspector() {
 		return inspector;
 	}
-
-
-
 
 }
