@@ -1,12 +1,12 @@
 package ar.edu.unq.po2.tpFinal;
 
 public class Usuario {
-	// private String nombre;
 	private int celular;
 	private String patente;
 	private int saldo;
-	private ModalidadEstacionamiento modalidad;
-	private PuntoDeVenta p;
+	private IModoApp modalidad;
+	private boolean notificacionesActivadas;
+
 //Métodos:
 	// <<<<<<< HEAD
 // REVISAR
@@ -15,11 +15,6 @@ public class Usuario {
 	// estacionamiento.zona.iniciarEstacionamiento(estacionamiento,
 	// this.getPatente(), horas);
 	// }
-
-	public void iniciarEstacionamiento(PuntoDeVenta p) {
-		modalidad.iniciarEstacionamiento();
-	}
-	// >>>>>>> refs/remotes/origin/main
 
 	public String getPatente() {
 		return patente;
@@ -37,11 +32,19 @@ public class Usuario {
 		this.saldo = saldo;
 	}
 
-	public ModalidadEstacionamiento getModalidad() {
+	public IModoApp getModalidad() {
 		return modalidad;
 	}
 
-	public void setModalidad(ModalidadEstacionamiento modalidad) {
+	public void setModalidad(IModoApp modalidad) {
 		this.modalidad = modalidad;
+	}
+
+	public boolean getNotificacionesActivadas() {
+		return notificacionesActivadas;
+	}
+
+	public void activarODesactivarNotificaciones() {
+		this.notificacionesActivadas = !notificacionesActivadas;
 	}
 }

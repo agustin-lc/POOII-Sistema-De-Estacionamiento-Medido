@@ -3,11 +3,11 @@ package ar.edu.unq.po2.tpFinal;
 import java.time.LocalDateTime;
 
 public abstract class Estacionamiento {
-	private String patente;
+	protected String patente;
 	protected LocalDateTime horaInicio;
 	protected LocalDateTime horaFin;
 
-	// Setters
+	// SETTERS
 	protected void setPatente(String patente) {
 		this.patente = patente;
 	}
@@ -20,7 +20,7 @@ public abstract class Estacionamiento {
 		this.horaFin = horaFin;
 	}
 
-	// Getters
+	// GETTERS
 	public LocalDateTime getHoraInicio() {
 		return this.horaInicio;
 	}

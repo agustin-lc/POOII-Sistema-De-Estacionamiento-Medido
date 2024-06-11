@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class SistemaDeEstacionamientoMedido {
 
-	private List<ZonaDeEstacionamiento> zonasDeEstacionamiento = new ArrayList<ZonaDeEstacionamiento>();
+	private List<ZonaDeEstacionamiento> zonasDeEstacionamiento;
 	private LocalDateTime inicioFranja;
 	private LocalDateTime cierreFranja;
 	private List<ISuscriptor> suscriptores;
@@ -16,21 +16,20 @@ public class SistemaDeEstacionamientoMedido {
 	private double precioPorHora;
 	private List<Compra> comprasRegistradas;
 
-	public List<Inspector> getInspectores() {
-		return zonasDeEstacionamiento.stream().map(zona -> zona.getInspector()).toList();
+	public SistemaDeEstacionamientoMedido(LocalDateTime inicio, LocalDateTime fin, double precio) {
+		this.setPrecioPorHora(precio);
+		this.setCierreFranja(fin);
+		this.setInicioFranja(inicio);
+		zonasDeEstacionamiento = new ArrayList<ZonaDeEstacionamiento>();
+		suscriptores = new ArrayList<ISuscriptor>();
+		infracciones = new ArrayList<Infraccion>();
+		estacionamientosRegistrados = new ArrayList<Estacionamiento>();
+		comprasRegistradas = new ArrayList<Compra>();
 	}
-
-	public List<List<PuntoDeVenta>> getPuntosDeVentas() {
-		return zonasDeEstacionamiento.stream().map(zona -> zona.getPuntoDeVenta()).toList();
-	}
+	// GETTERS
 
 	public List<ZonaDeEstacionamiento> getZonasDeEstacionamientos() {
 		return zonasDeEstacionamiento;
-	}
-
-	public List<Integer> getCreditosDeCelulares() {
-		return null;
-		// realizar un map sobre lista de estacionamientos realizados
 	}
 
 	public LocalDateTime getInicioFranja() {
@@ -41,13 +40,38 @@ public class SistemaDeEstacionamientoMedido {
 		return cierreFranja;
 	}
 
+	public double getPrecioPorHora() {
+		return precioPorHora;
+	}
+
+	public List<Infraccion> getInfracciones() {
+		return infracciones;
+	}
+
+	public List<Inspector> getInspectores() {
+		return zonasDeEstacionamiento.stream().map(zona -> zona.getInspector()).toList();
+	}
+
+	public List<List<PuntoDeVenta>> getPuntosDeVentas() {
+		return zonasDeEstacionamiento.stream().map(zona -> zona.getPuntoDeVenta()).toList();
+	}
+
 	public List<Estacionamiento> getEstacionamientosVigentes() {
 		return estacionamientosRegistrados.stream().filter(e -> e.estaVigente(LocalDateTime.now()))
 				.collect(Collectors.toList());
 	}
 
-	public List<Infraccion> getInfracciones() {
-		return infracciones;
+	// SETTERS
+	public void setInicioFranja(LocalDateTime inicioFranja) {
+		this.inicioFranja = inicioFranja;
+	}
+
+	public void setCierreFranja(LocalDateTime cierreFranja) {
+		this.cierreFranja = cierreFranja;
+	}
+
+	public void setPrecioPorHora(double precioPorHora) {
+		this.precioPorHora = precioPorHora;
 	}
 
 	public void añadirSuscriptor(ISuscriptor suscriptor) {
@@ -69,6 +93,7 @@ public class SistemaDeEstacionamientoMedido {
 		ZonaDeEstacionamiento zonaInspector = inspec.getZonaAsignada();
 		Infraccion infraccion = new Infraccion(patente, fechaYHoraActual, inspec, zonaInspector);
 		infracciones.add(infraccion);
+		this.notificarSuscriptores();
 	}
 
 	public boolean poseeEstacionamientoVigente(String patente) {
@@ -77,9 +102,12 @@ public class SistemaDeEstacionamientoMedido {
 
 	public void finalizarEstacionamientos() {
 		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
+		this.notificarSuscriptores();
 	}
 
 	public void añadirCompra(Compra compra) {
 		this.comprasRegistradas.add(compra);
+		this.notificarSuscriptores();
 	}
+
 }
