@@ -5,17 +5,13 @@ import java.time.LocalDateTime;
 public class EstacionamientoCompraPuntual extends Estacionamiento {
 	private int cantidadHoras;
 
-	public EstacionamientoCompraPuntual(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, int cantidad) {
+	// CONSTRUCTOR
+	public EstacionamientoCompraPuntual(String patente, LocalDateTime localDateTime, LocalDateTime localDateTime2,
+			int cantidad) {
 		this.patente = patente;
-		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
+		this.horaInicio = localDateTime;
+		this.horaFin = localDateTime2;
 		this.cantidadHoras = cantidad;
-	}
-
-	@Override
-	public void finalizar(LocalDateTime hora) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public int getCantidadHoras() {
@@ -24,6 +20,12 @@ public class EstacionamientoCompraPuntual extends Estacionamiento {
 
 	public void setCantidadHoras(int cantidadHoras) {
 		this.cantidadHoras = cantidadHoras;
+	}
+
+	@Override
+	public void finalizar(LocalDateTime hora) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

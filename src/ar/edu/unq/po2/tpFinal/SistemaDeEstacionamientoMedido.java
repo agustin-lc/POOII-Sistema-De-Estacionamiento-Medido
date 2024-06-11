@@ -84,6 +84,7 @@ public class SistemaDeEstacionamientoMedido {
 		}
 	}
 
+	// METHODS
 	public void notificarSuscriptores() {
 		suscriptores.forEach(sub -> sub.notificar());
 	}
@@ -107,6 +108,11 @@ public class SistemaDeEstacionamientoMedido {
 
 	public void añadirCompra(Compra compra) {
 		this.comprasRegistradas.add(compra);
+		this.notificarSuscriptores();
+	}
+
+	public void añadirEstacionamiento(Estacionamiento estacionamiento) {
+		estacionamientosRegistrados.add(estacionamiento);
 		this.notificarSuscriptores();
 	}
 

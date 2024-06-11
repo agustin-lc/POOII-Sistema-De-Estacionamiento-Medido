@@ -38,6 +38,7 @@ public abstract class Estacionamiento {
 	}
 
 	public void finalizar(LocalDateTime hora) {
+
 	}
 
 }

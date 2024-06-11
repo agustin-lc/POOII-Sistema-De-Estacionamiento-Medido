@@ -3,7 +3,7 @@ package ar.edu.unq.po2.tpFinal;
 import java.time.LocalDateTime;
 
 public abstract class Compra {
-	private int nroTicket;
+	private double nroTicket;
 	private PuntoDeVenta puntoDeCompra;
 	private LocalDateTime fechaYHora;
 
@@ -11,8 +11,8 @@ public abstract class Compra {
 		return nroTicket;
 	}
 
-	public void setNroTicket(int nroTicket) {
-		this.nroTicket = nroTicket;
+	public void setNroTicket(double ticketAsignado) {
+		this.nroTicket = ticketAsignado;
 	}
 
 	public PuntoDeVenta getPuntoDeCompra() {

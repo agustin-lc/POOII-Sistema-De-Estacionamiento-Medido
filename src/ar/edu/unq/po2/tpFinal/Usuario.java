@@ -8,14 +8,16 @@ public class Usuario {
 	private boolean notificacionesActivadas;
 
 //Métodos:
-	// <<<<<<< HEAD
-// REVISAR
-	// public void iniciarEstacionamientoManual(Estacionamiento estacionamiento, int
-	// horas) {
-	// estacionamiento.zona.iniciarEstacionamiento(estacionamiento,
-	// this.getPatente(), horas);
-	// }
+	// CONSTRUCTOR
+	public Usuario(int celular, String patente, int saldo, IModoApp modalidad) {
+		this.celular = celular;
+		this.patente = patente;
+		this.saldo = saldo;
+		this.modalidad = modalidad;
+		this.notificacionesActivadas = true; // TOMAMOS COMO VALOR PREDETERMINADO QUE POSEE LAS NOTIFICACIONES ACTIVADAS
+	}
 
+	// GETTERS
 	public String getPatente() {
 		return patente;
 	}
@@ -28,23 +30,30 @@ public class Usuario {
 		return saldo;
 	}
 
-	public void setSaldo(int saldo) {
-		this.saldo = saldo;
-	}
-
 	public IModoApp getModalidad() {
 		return modalidad;
-	}
-
-	public void setModalidad(IModoApp modalidad) {
-		this.modalidad = modalidad;
 	}
 
 	public boolean getNotificacionesActivadas() {
 		return notificacionesActivadas;
 	}
 
+	// SETTERS
+	public void setSaldo(int saldo) {
+		this.saldo = saldo;
+	}
+
+	public void setModalidad(IModoApp modalidad) {
+		this.modalidad = modalidad;
+	}
+
+	// METODOS
 	public void activarODesactivarNotificaciones() {
 		this.notificacionesActivadas = !notificacionesActivadas;
 	}
+
+	public void iniciarEstacionamientoManual(int horas, PuntoDeVenta punto) {
+		punto.registrarCompraPuntual(horas, this.patente);
+	}
+
 }

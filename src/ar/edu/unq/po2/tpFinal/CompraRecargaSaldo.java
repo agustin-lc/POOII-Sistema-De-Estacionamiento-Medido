@@ -6,7 +6,7 @@ public class CompraRecargaSaldo extends Compra {
 	private int nroCelular;
 	private int montoARecargar;
 
-	public CompraRecargaSaldo(int ticketAsignado, PuntoDeVenta punto, LocalDateTime fechayHoraDeRecarga,
+	public CompraRecargaSaldo(double ticketAsignado, PuntoDeVenta punto, LocalDateTime fechayHoraDeRecarga,
 			int nroDeCelularRecargado, int monto) {
 		this.setNroTicket(ticketAsignado);
 		this.setPuntoDeCompra(punto);
