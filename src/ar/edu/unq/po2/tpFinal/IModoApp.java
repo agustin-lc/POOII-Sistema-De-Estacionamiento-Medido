@@ -1,6 +1,7 @@
 package ar.edu.unq.po2.tpFinal;
 
 public interface IModoApp {
-    //void inicioDeEstacionamiento...
-    //void finDeEstacionamiento...
+	public void alertaInicioDeEstacionamiento(Usuario usuario); 
+    
+	public void alertaFinDeEstacionamiento(Usuario usuario) ;
 }
