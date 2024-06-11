@@ -37,8 +37,6 @@ public abstract class Estacionamiento {
 		return horaActual.isAfter(this.getHoraInicio()) && horaActual.isBefore(this.getHoraFin());
 	}
 
-	public void finalizar(LocalDateTime hora) {
-
-	}
+	public abstract void finalizar(LocalDateTime hora);
 
 }

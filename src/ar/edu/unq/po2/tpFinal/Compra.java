@@ -11,8 +11,8 @@ public abstract class Compra {
 		return nroTicket;
 	}
 
-	public void setNroTicket(double ticketAsignado) {
-		this.nroTicket = ticketAsignado;
+	public void setNroTicket(double nroTicket) {
+		this.nroTicket = nroTicket;
 	}
 
 	public PuntoDeVenta getPuntoDeCompra() {
