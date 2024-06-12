@@ -2,14 +2,14 @@ package ar.edu.unq.po2.tpFinal;
 
 import java.time.LocalDateTime;
 
-public class EstacionamientoViaApp extends Estacionamiento {
+public class EstacionamientoViaApp extends Estacionamiento implements MovementSensor{
 	private IModoApp modo;
 	private String patente;
 	private String celular;
 	private double saldo;
 	private SistemaDeEstacionamientoMedido sem;
 	private int numeroDeCelular;
-
+	private EstadoMovimiento movimientoE;
 	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, int numero) {
 		this.modo = new ModoManual();
 		this.patente = patente;
@@ -60,5 +60,23 @@ public class EstacionamientoViaApp extends Estacionamiento {
 
 	public int getNumeroDeCelular() {
 		return numeroDeCelular;
+	}
+
+	@Override
+	public void walking() {
+		// TODO Auto-generated method stub
+	movimientoE.driving();	
+	}
+
+	@Override
+	public void driving() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	public void setMovimientoE(EstadoMovimiento movimientoE) {
+		this.movimientoE = movimientoE;
 	}
 }
