@@ -4,7 +4,8 @@ public class ModoAutomatico implements IModoApp {
 
 	@Override
 	public void alertaInicioDeEstacionamiento(Usuario usuario) {
-		// TODO Auto-generated method stub
+		String patente = usuario.getPatente();
+		usuario.iniciarEstacionamientoAPP(patente);
 
 	}
 

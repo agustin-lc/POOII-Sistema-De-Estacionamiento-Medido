@@ -6,6 +6,7 @@ public abstract class Estacionamiento {
 	protected String patente;
 	protected LocalDateTime horaInicio;
 	protected LocalDateTime horaFin;
+	protected boolean estaVigente;
 
 	// SETTERS
 	protected void setPatente(String patente) {
@@ -18,6 +19,11 @@ public abstract class Estacionamiento {
 
 	protected void setHoraFin(LocalDateTime horaFin) {
 		this.horaFin = horaFin;
+	}
+
+	protected void setEstaVigente(boolean expresion) {
+		this.estaVigente = expresion;
+
 	}
 
 	// GETTERS
@@ -33,8 +39,8 @@ public abstract class Estacionamiento {
 		return patente;
 	}
 
-	public boolean estaVigente(LocalDateTime horaActual) {
-		return horaActual.isAfter(this.getHoraInicio()) && horaActual.isBefore(this.getHoraFin());
+	public boolean estaVigente() {
+		return false; // LO TOMAMOS COMO PREDETERMINADO QUE EL ESTACIONAMIENTO
 	}
 
 	public abstract void finalizar(LocalDateTime hora);

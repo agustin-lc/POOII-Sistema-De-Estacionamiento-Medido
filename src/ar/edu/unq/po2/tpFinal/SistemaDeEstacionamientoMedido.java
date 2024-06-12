@@ -1,6 +1,8 @@
 package ar.edu.unq.po2.tpFinal;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,10 +18,10 @@ public class SistemaDeEstacionamientoMedido {
 	private double precioPorHora;
 	private List<Compra> comprasRegistradas;
 
-	public SistemaDeEstacionamientoMedido(LocalDateTime inicio, LocalDateTime fin, double precio) {
-		this.setPrecioPorHora(precio);
-		this.setCierreFranja(fin);
-		this.setInicioFranja(inicio);
+	public SistemaDeEstacionamientoMedido() {
+		this.setPrecioPorHora(40.00);
+		this.setCierreFranja(LocalDateTime.of(LocalDate.now(), LocalTime.of(20, 0))); // finaliza a las 20:00
+		this.setInicioFranja(LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 0))); // inicia a las 07:00
 		zonasDeEstacionamiento = new ArrayList<ZonaDeEstacionamiento>();
 		suscriptores = new ArrayList<ISuscriptor>();
 		infracciones = new ArrayList<Infraccion>();
@@ -57,8 +59,7 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public List<Estacionamiento> getEstacionamientosVigentes() {
-		return estacionamientosRegistrados.stream().filter(e -> e.estaVigente(LocalDateTime.now()))
-				.collect(Collectors.toList());
+		return estacionamientosRegistrados.stream().filter(e -> e.estaVigente()).collect(Collectors.toList());
 	}
 
 	// SETTERS
@@ -114,6 +115,10 @@ public class SistemaDeEstacionamientoMedido {
 	public void añadirEstacionamiento(Estacionamiento estacionamiento) {
 		estacionamientosRegistrados.add(estacionamiento);
 		this.notificarSuscriptores();
+	}
+
+	public double getPrecioTotalDeFranja() {
+		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
 	}
 
 }

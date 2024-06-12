@@ -24,8 +24,7 @@ public class EstacionamientoCompraPuntual extends Estacionamiento {
 
 	@Override
 	public void finalizar(LocalDateTime hora) {
-		// TODO Auto-generated method stub
-
+		this.setEstaVigente(false);
 	}
 
 }
