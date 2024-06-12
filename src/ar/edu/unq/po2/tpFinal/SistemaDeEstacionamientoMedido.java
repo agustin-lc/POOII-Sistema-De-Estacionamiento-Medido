@@ -17,6 +17,7 @@ public class SistemaDeEstacionamientoMedido {
 	private List<Estacionamiento> estacionamientosRegistrados;
 	private double precioPorHora;
 	private List<Compra> comprasRegistradas;
+	private List<EstacionamientoViaApp> celulares;
 
 	public SistemaDeEstacionamientoMedido() {
 		this.setPrecioPorHora(40.00);
@@ -27,6 +28,7 @@ public class SistemaDeEstacionamientoMedido {
 		infracciones = new ArrayList<Infraccion>();
 		estacionamientosRegistrados = new ArrayList<Estacionamiento>();
 		comprasRegistradas = new ArrayList<Compra>();
+
 	}
 	// GETTERS
 
@@ -38,7 +40,6 @@ public class SistemaDeEstacionamientoMedido {
 		return inicioFranja;
 	}
 
-	
 	public LocalDateTime getCierreFranja() {
 		return cierreFranja;
 	}
@@ -122,4 +123,15 @@ public class SistemaDeEstacionamientoMedido {
 		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
 	}
 
+	public EstacionamientoViaApp getCelulares(int celular) {
+		// retorna lista de celulares
+		EstacionamientoViaApp ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
+				.orElse(null);
+		return ce;
+	}
+
+	public void agregarCelular(EstacionamientoViaApp celular) {
+		// TODO Auto-generated method stub
+		celulares.add(celular);
+	}
 }

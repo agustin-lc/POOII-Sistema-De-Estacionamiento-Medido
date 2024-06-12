@@ -17,6 +17,7 @@ public class PuntoDeVenta {
 	}
 
 	public void recargarCredito(int celular, int monto) {
+		sem.getCelulares(celular).agregarSaldo(monto);
 		sem.añadirCompra(
 				new CompraRecargaSaldo(this.getNumeroTicketRandom(), this, LocalDateTime.now(), celular, monto));
 		System.out.println("Se ha creditado el $" + monto);

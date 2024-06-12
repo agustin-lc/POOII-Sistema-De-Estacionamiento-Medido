@@ -12,16 +12,12 @@ public class CompraRecargaSaldo extends Compra {
 		this.setPuntoDeCompra(punto);
 		this.setFechaYHora(fechayHoraDeRecarga);
 		this.setNroCelular(nroDeCelularRecargado);
-		this.setMontoARecargar(monto);
+		this.montoARecargar = monto;
 
 	}
 
 	public int getMontoARecargar() {
 		return montoARecargar;
-	}
-
-	public void setMontoARecargar(int montoARecargar) {
-		this.montoARecargar = montoARecargar;
 	}
 
 	public int getNroCelular() {

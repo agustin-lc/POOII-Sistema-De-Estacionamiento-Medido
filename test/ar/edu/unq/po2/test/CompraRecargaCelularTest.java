@@ -47,13 +47,6 @@ class CompraRecargaCelularTest {
 	}
 
 	@Test
-	void testSetMontoARecargar() {
-		int montoNuevo = 44444;
-		compra.setMontoARecargar(montoNuevo);
-		assertEquals(montoNuevo, compra.getMontoARecargar());
-	}
-
-	@Test
 	void testGetNroCelular() {
 		assertEquals(nroCelular, compra.getNroCelular());
 	}
