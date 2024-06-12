@@ -20,10 +20,6 @@ public class CompraRecargaSaldo extends Compra {
 		return montoARecargar;
 	}
 
-	public void setMontoARecargar(int montoARecargar) {
-		this.montoARecargar = montoARecargar;
-	}
-
 	public int getNroCelular() {
 		return nroCelular;
 	}
