@@ -15,6 +15,8 @@ public class SistemaDeEstacionamientoMedido {
 	private List<ISuscriptor> suscriptores;
 	private List<Infraccion> infracciones;
 	private List<Estacionamiento> estacionamientosRegistrados;
+	private List<EstacionamientoViaApp> celulares;
+
 	private double precioPorHora;
 	private List<Compra> comprasRegistradas;
 	private List<EstacionamientoViaApp> celulares;
@@ -123,6 +125,20 @@ public class SistemaDeEstacionamientoMedido {
 		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
 	}
 
+	<<<<<<<HEAD
+
+	public EstacionamientoViaApp getCelulares(int celular) {
+		// retorna lista de celulares
+		EstacionamientoViaApp ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
+				.orElse(null);
+		return ce;
+	}
+
+	public void agregarCelular(EstacionamientoViaApp celular) {
+		// TODO Auto-generated method stub
+		celulares.add(celular);
+	}=======
+
 	public EstacionamientoViaApp getCelulares(int celular) {
 		// retorna lista de celulares
 		EstacionamientoViaApp ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
@@ -134,4 +150,8 @@ public class SistemaDeEstacionamientoMedido {
 		// TODO Auto-generated method stub
 		celulares.add(celular);
 	}
+
+	>>>>>>>branch'main'
+
+	of https:// github.com/agustin-lc/POOII-Sistema-De-Estacionamiento-Medido.git
 }
