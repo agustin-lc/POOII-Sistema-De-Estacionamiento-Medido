@@ -3,18 +3,24 @@ package ar.edu.unq.po2.tpFinal;
 import java.time.LocalDateTime;
 
 public class EstacionamientoViaApp extends Estacionamiento {
-	private int numeroDeCelular;
+	private IModoApp modo;
+    	private String patente;
+    	private String celular;
+    	private double saldo;
+	private SistemaDeEstacionamientoMedido sem;
+	//private int numeroDeCelular;
 
 	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, int numero) {
+		this.modo = new ModoManual();
 		this.patente = patente;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
 		this.numeroDeCelular = numero;
 	}
 
-	public int getNumeroDeCelular() {
-		return numeroDeCelular;
-	}
+	//public int getNumeroDeCelular() {
+	//	return numeroDeCelular;
+	//}
 
 	@Override
 	public void finalizar(LocalDateTime hora) {
@@ -22,4 +28,29 @@ public class EstacionamientoViaApp extends Estacionamiento {
 		// this.estaVigente() = false;
 	}
 
+		
+	public void cambiarModo(IModoApp modo) {
+    		this.modo = modo;
+    	}
+
+    	public SistemaDeEstacionamientoMedido getSem() {
+    		return sem;
+    	}
+    
+   	 public String getPatente() {
+    		return patente;
+    	}
+    
+    	public String getCelular() {
+    		return celular;
+    	}
+    
+    	public double getSaldo() {
+        	return saldo;
+    	}
+
+    
+    	public boolean estacionamientoVigente() {
+    		return sem.poseeEstacionamientoVigente(this.patente);
+    	}
 }
