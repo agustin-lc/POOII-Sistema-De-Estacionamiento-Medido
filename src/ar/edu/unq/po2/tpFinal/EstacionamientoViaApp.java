@@ -62,13 +62,13 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	@Override
 	public void walking() {
 		// TODO Auto-generated method stub
-	movimientoE.driving();	
+	movimientoE.walking(this);
 	}
 
 	@Override
 	public void driving() {
 		// TODO Auto-generated method stub
-		
+		movimientoE.driving(this);
 	}
 
 	

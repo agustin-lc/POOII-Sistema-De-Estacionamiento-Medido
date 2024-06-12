@@ -13,6 +13,7 @@ public class PuntoDeVenta {
 
 	// METODOS
 	public double getNumeroTicketRandom() {
+		//Numero de control
 		return Math.random();
 	}
 
