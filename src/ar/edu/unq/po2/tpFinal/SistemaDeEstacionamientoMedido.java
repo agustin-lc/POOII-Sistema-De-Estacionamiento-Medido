@@ -38,6 +38,7 @@ public class SistemaDeEstacionamientoMedido {
 		return inicioFranja;
 	}
 
+	
 	public LocalDateTime getCierreFranja() {
 		return cierreFranja;
 	}
