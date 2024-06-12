@@ -9,6 +9,7 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	private double saldo;
 	private SistemaDeEstacionamientoMedido sem;
 	private EstadoMovimiento movimientoE;
+	private Boolean asistencia;
 	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, String numero) {
 		this.modo = new ModoManual();
 		this.patente = patente;
@@ -73,4 +74,13 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	public void setMovimientoE(EstadoMovimiento movimientoE) {
 		this.movimientoE = movimientoE;
 	}
+
+	public Boolean getAsistencia() {
+		return asistencia;
+	}
+
+	public void alternarAsistencia( ) {
+		this.asistencia = !asistencia;
+	}
+	
 }

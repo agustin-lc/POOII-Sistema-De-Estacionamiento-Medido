@@ -12,6 +12,9 @@ public class Walking extends EstadoMovimiento {
 	public void driving(EstacionamientoViaApp app) {
 		// TODO Auto-generated method stub
 		//Finalizar estacionamietno
+		if(app.getAsistencia()) {
+			//notificar
+		}
 		app.setMovimientoE(new Driving());
 	}
 

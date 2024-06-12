@@ -6,6 +6,10 @@ public class Driving extends EstadoMovimiento {
 	public void walking(EstacionamientoViaApp app) {
 		// TODO Auto-generated method stub
 		//Iniciar estacionamiento
+		if(app.getAsistencia()) {
+			//notificar
+			System.out.print("Alerta de inicio de estacionamiento");
+		}
 		app.setMovimientoE(new Walking());
 		
 	}
