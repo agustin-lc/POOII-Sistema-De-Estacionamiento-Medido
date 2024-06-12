@@ -3,16 +3,20 @@ package ar.edu.unq.po2.tpFinal;
 public class ModoAutomatico implements IModoApp {
 
 	@Override
-	public void alertaInicioDeEstacionamiento(Usuario usuario) {
-		String patente = usuario.getPatente();
-		usuario.iniciarEstacionamientoAPP(patente);
-
+	public void inicioDeEstacionamiento(EstacionamientoViaApp estacionamientoApp) {
+		if (!estacionamientoApp.estacionamientoVigente()) {
+			estacionamientoApp.getSem().notificacionDeInicio(estacionamientoApp.getPatente());
+        	}
+		
 	}
 
+	
 	@Override
-	public void alertaFinDeEstacionamiento(Usuario usuario) {
-		// TODO Auto-generated method stub
-
+	public void finDeEstacionamiento(EstacionamientoViaApp estacionamientoApp) {
+		if (estacionamientoApp.estacionamientoVigente()) {
+			estacionamientoApp.getSem().notificacionDeFin(estacionamientoApp.getCelular());
+        	}
+		
 	}
 
 }
