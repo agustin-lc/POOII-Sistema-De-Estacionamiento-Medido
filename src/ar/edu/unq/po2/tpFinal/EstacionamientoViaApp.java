@@ -8,14 +8,13 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	private String celular;
 	private double saldo;
 	private SistemaDeEstacionamientoMedido sem;
-	private int numeroDeCelular;
 	private EstadoMovimiento movimientoE;
-	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, int numero) {
+	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, String numero) {
 		this.modo = new ModoManual();
 		this.patente = patente;
 		this.horaInicio = horaInicio;
 		this.horaFin = horaFin;
-		this.numeroDeCelular = numero;
+		this.celular = numero;
 		sem.agregarCelular(this);
 	}
 
@@ -58,9 +57,7 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 		return sem.poseeEstacionamientoVigente(this.patente);
 	}
 
-	public int getNumeroDeCelular() {
-		return numeroDeCelular;
-	}
+	
 
 	@Override
 	public void walking() {
