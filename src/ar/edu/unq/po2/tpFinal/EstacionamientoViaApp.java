@@ -40,10 +40,7 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 		return sem;
 	}
 
-	// fijarse override!
-	public String getPatente() {
-		return patente;
-	}
+	
 
 	public String getCelular() {
 		return celular;
