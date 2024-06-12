@@ -28,44 +28,20 @@ public class EstacionamientoViaApp extends Estacionamiento {
 		this.horaFin = hora;
 		// this.estaVigente() = false;
 	}
+
 	public void agregarSaldo(double monto) {
 		saldo = saldo + monto;
 	}
 
-<<<<<<< HEAD
-=======
-		
-	public void agregarSaldo(double monto) {
-		saldo = saldo + monto;
-	}
->>>>>>> branch 'main' of https://github.com/agustin-lc/POOII-Sistema-De-Estacionamiento-Medido.git
 	public void cambiarModo(IModoApp modo) {
 		this.modo = modo;
 	}
 
-<<<<<<< HEAD
 	public SistemaDeEstacionamientoMedido getSem() {
 		return sem;
 	}
-=======
-    	public SistemaDeEstacionamientoMedido getSem() {
-    		return sem;
-    	}
-    //fijarse override!
-   	 public String getPatente() {
-    		return patente;
-    	}
-    
-    	public String getCelular() {
-    		return celular;
-    	}
-    
-    	public double getSaldo() {
-        	return saldo;
-    	}
->>>>>>> branch 'main' of https://github.com/agustin-lc/POOII-Sistema-De-Estacionamiento-Medido.git
 
-<<<<<<< HEAD
+	// fijarse override!
 	public String getPatente() {
 		return patente;
 	}
@@ -81,14 +57,8 @@ public class EstacionamientoViaApp extends Estacionamiento {
 	public boolean estacionamientoVigente() {
 		return sem.poseeEstacionamientoVigente(this.patente);
 	}
-=======
-    
-    	public boolean estacionamientoVigente() {
-    		return sem.poseeEstacionamientoVigente(this.patente);
-    	}
 
-		public int getNumeroDeCelular() {
-			return numeroDeCelular;
-		}
->>>>>>> branch 'main' of https://github.com/agustin-lc/POOII-Sistema-De-Estacionamiento-Medido.git
+	public int getNumeroDeCelular() {
+		return numeroDeCelular;
+	}
 }
