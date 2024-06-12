@@ -21,14 +21,14 @@ class InspectorTest {
 	private String patente;
 	private ZonaDeEstacionamiento zona;
 	private Inspector inspector;
-	private int numero;
+	private String numero;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		sem = mock(SistemaDeEstacionamientoMedido.class);
 		zona = mock(ZonaDeEstacionamiento.class);
 		patente = "AB123CD";
-		numero = 12345678;
+		numero = "12345678";
 		inspector = new Inspector(numero, zona, sem);
 	}
 
@@ -56,7 +56,7 @@ class InspectorTest {
 
 	@Test
 	void testSetNumeroTelefono() {
-		int numeroNuevo = 11223344;
+		String numeroNuevo = "11223344";
 		inspector.setCelular(numeroNuevo);
 		assertEquals(numeroNuevo, inspector.getCelular());
 	}
