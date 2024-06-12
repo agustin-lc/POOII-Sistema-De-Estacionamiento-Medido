@@ -135,4 +135,5 @@ public class SistemaDeEstacionamientoMedido {
 		// TODO Auto-generated method stub
 		celulares.add(celular);
 	}
+
 }

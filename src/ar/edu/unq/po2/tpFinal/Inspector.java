@@ -3,11 +3,11 @@ package ar.edu.unq.po2.tpFinal;
 import java.time.LocalDate;
 
 public class Inspector {
-	private int celular;
+	private String celular;
 	private ZonaDeEstacionamiento zonaAsignada;
 	private SistemaDeEstacionamientoMedido sem;
 
-	public Inspector(int numero, ZonaDeEstacionamiento zona, SistemaDeEstacionamientoMedido sem) {
+	public Inspector(String numero, ZonaDeEstacionamiento zona, SistemaDeEstacionamientoMedido sem) {
 		this.celular = numero;
 		this.zonaAsignada = zona;
 		this.sem = sem;
@@ -26,7 +26,7 @@ public class Inspector {
 		this.sem.añadirInfraccion(patente, this);
 	}
 
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
@@ -38,7 +38,7 @@ public class Inspector {
 		return zonaAsignada;
 	}
 
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
