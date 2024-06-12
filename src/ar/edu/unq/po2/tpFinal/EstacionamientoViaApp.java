@@ -20,10 +20,6 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 		sem.agregarCelular(this);
 	}
 
-	// public int getNumeroDeCelular() {
-	// return numeroDeCelular;
-	// }
-
 	@Override
 	public void finalizar(LocalDateTime hora) {
 		this.horaFin = hora;
