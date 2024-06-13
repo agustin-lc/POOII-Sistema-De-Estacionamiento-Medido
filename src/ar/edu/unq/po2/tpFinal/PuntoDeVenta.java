@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class PuntoDeVenta {
 	private SistemaDeEstacionamientoMedido sem;
 	
+
 	// CONSTRUCTOR
 	public PuntoDeVenta(SistemaDeEstacionamientoMedido sem) {
 		this.sem = sem;
@@ -23,6 +24,7 @@ public class PuntoDeVenta {
 		System.out.println("Se ha creditado el $" + monto);
 	}
 	
+
 	public void registrarCompraPuntual(int horas, String patente) {
 		this.registrarEstacionamiento(horas, patente);
 		CompraEstacionamiento ticketEstacionamiento = new CompraEstacionamiento(this.getNumeroTicketRandom(), this,
@@ -30,6 +32,7 @@ public class PuntoDeVenta {
 		sem.añadirCompra(ticketEstacionamiento);
 	}
 	
+
 	private void registrarEstacionamiento(int horas, String patente) {
 		EstacionamientoCompraPuntual estacionamiento = new EstacionamientoCompraPuntual(patente,
 				sem.getHorario(),

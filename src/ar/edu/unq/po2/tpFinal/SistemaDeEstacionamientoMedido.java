@@ -43,6 +43,8 @@ public class SistemaDeEstacionamientoMedido {
 
 	public List<Estacionamiento> getEstacionamientosRegistrados() {
 		return estacionamientosRegistrados;
+	public List<ISuscriptor> getSuscriptores() {
+		return suscriptores;
 	}
 
 	public List<ZonaDeEstacionamiento> getZonasDeEstacionamientos() {
@@ -118,11 +120,13 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public boolean poseeEstacionamientoVigente(String patente) {
-		return this.estacionamientosRegistrados.stream().filter(est -> est.getPatente() == patente).toList().isEmpty();
+		return this.estacionamientosRegistrados.stream()
+				.anyMatch(est -> est.getPatente().equals(patente) && est.estaVigente());
 	}
 
 	public void finalizarEstacionamientos() {
 		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
+		this.getEstacionamientosVigentes().clear();
 		this.notificarFinEstacionamiento();
 	}
 
@@ -139,9 +143,10 @@ public class SistemaDeEstacionamientoMedido {
 		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
 	}
 
-	public List<EstacionamientoViaApp> getCelulares(){
+	public List<EstacionamientoViaApp> getCelulares() {
 		return this.celulares;
 	}
+
 	public EstacionamientoViaApp getCelular(String celular) {
 		// retorna lista de celulares
 		EstacionamientoViaApp ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
