@@ -1,5 +1,3 @@
-package ar.edu.unq.po2.tpFinal;
-
 public class Driving extends EstadoMovimiento {
 	@Override
 	public void walking(EstacionamientoViaApp app) {
@@ -7,12 +5,16 @@ public class Driving extends EstadoMovimiento {
 		//Iniciar estacionamiento
 		if(app.getAsistencia()) {
 			//notificar
+		// Iniciar estacionamiento
+		if (app.getAsistencia()) {
+			// notificar
 			System.out.print("Alerta de inicio de estacionamiento");
+			// inicia el estacionamiento
+			app.getModo().inicioDeEstacionamiento(app);
 		}
 		app.setMovimientoE(new Walking());
 
 	}
-
 	@Override
 	public void driving(EstacionamientoViaApp app) {
 		// hacer nada

@@ -14,6 +14,7 @@ public class Walking extends EstadoMovimiento {
 		//Finalizar estacionamietno
 		if(app.getAsistencia()) {
 			//notificar
+			System.out.print("Alerta de fin de estacionamiento");
 		}
 		app.setMovimientoE(new Driving());
 	}
