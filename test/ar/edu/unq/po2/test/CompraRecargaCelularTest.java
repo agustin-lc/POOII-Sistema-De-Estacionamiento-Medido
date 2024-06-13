@@ -17,14 +17,14 @@ class CompraRecargaCelularTest {
 	private double ticket;
 	private LocalDateTime fechayhora;
 	private int monto;
-	private int nroCelular;
+	private String nroCelular;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		punto = mock(PuntoDeVenta.class);
 		ticket = 1234;
 		fechayhora = LocalDateTime.now();
-		nroCelular = 1144556677;
+		nroCelular = "1144556677";
 		monto = 2000;
 		compra = new CompraRecargaSaldo(ticket, punto, fechayhora, nroCelular, monto);
 	}
@@ -53,7 +53,7 @@ class CompraRecargaCelularTest {
 
 	@Test
 	void testSetNroCelular() {
-		int nroNuevo = 1122334455;
+		String nroNuevo = "1122334455";
 		compra.setNroCelular(nroNuevo);
 		assertEquals(nroNuevo, compra.getNroCelular());
 	}
