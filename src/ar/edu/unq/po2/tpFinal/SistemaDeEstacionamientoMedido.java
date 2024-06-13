@@ -33,6 +33,10 @@ public class SistemaDeEstacionamientoMedido {
 	}
 	// GETTERS
 
+	public List<ISuscriptor> getSuscriptores() {
+		return suscriptores;
+	}
+
 	public List<ZonaDeEstacionamiento> getZonasDeEstacionamientos() {
 		return zonasDeEstacionamiento;
 	}
@@ -106,7 +110,7 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public boolean poseeEstacionamientoVigente(String patente) {
-		return this.estacionamientosRegistrados.stream().filter(est -> est.getPatente() == patente).toList().isEmpty();
+	    return this.estacionamientosRegistrados.stream().anyMatch(est -> est.getPatente().equals(patente) && est.estaVigente());
 	}
 
 	public void finalizarEstacionamientos() {
