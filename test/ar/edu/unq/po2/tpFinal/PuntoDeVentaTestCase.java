@@ -30,12 +30,6 @@ public class PuntoDeVentaTestCase {
         celular = new AppEstacionamiento("GGG 777", "123456789", sem);
     }
 
-	@BeforeEach
-	void setUp() {
-		sem = new SistemaDeEstacionamientoMedido();
-		puntoDeVenta = new PuntoDeVenta(sem);
-		celular = new AppEstacionamiento("GGG 777", "123456789", sem);
-	}
 
 	@Test
 	void testNuevaCompraRegistrada() {
@@ -50,7 +44,7 @@ public class PuntoDeVentaTestCase {
 	void testNuevaCompraPierdeVigencia() {
 		sem.avanzarHorario(10);
 		puntoDeVenta.registrarCompraPuntual(4, "ABC 157");
-//		Estacionamiento est = sem.getEstacionamientosRegistrados().getFirst();
+		Estacionamiento est = sem.getEstacionamientosRegistrados().getFirst();
 		sem.avanzarHorario(4);
 		assertFalse(est.estaVigente());
 
