@@ -3,7 +3,7 @@ package ar.edu.unq.po2.tpFinal;
 public class AppEstacionamiento  implements MovementSensor {
 	private IModoApp modo;//verificar conexiones con modos
 	private String patente;
-	private String celular;
+	private String numero;
 	private double saldo;
 	public EstadoMovimiento movimientoE;
 	private Boolean asistencia;
@@ -34,13 +34,13 @@ public class AppEstacionamiento  implements MovementSensor {
 		this.setModo(new ModoManual()); // por defecto manual
 		this.patente = patente;
 	//	this.horaInicio = horaInicio;
-		this.celular = numero;
+		this.numero = numero;
 		sem.agregarCelular(this);
 		this.sem = sem;
 	}
 
 	public EstacionamientoViaApp crearEstacionamiento() {
-		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),celular);
+		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero);
 		estacionamiento = est;
 		
 		return estacionamiento;
@@ -72,8 +72,8 @@ public class AppEstacionamiento  implements MovementSensor {
 		this.setModo(modo);
 	}
 
-	public String getCelular() {
-		return celular;
+	public String getNumero() {
+		return numero;
 	}
 
 	public double getSaldo() {

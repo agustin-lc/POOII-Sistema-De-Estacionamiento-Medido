@@ -31,7 +31,7 @@ public class SistemaDeEstacionamientoMedido {
 		infracciones = new ArrayList<Infraccion>();
 		estacionamientosRegistrados = new ArrayList<Estacionamiento>();
 		comprasRegistradas = new ArrayList<Compra>();
-
+		celulares = new ArrayList<AppEstacionamiento>();
 	}
 	public void avanzarHorario(int horas) {
 	horario = horario.plusHours(horas);
@@ -153,7 +153,7 @@ public class SistemaDeEstacionamientoMedido {
 
 	public AppEstacionamiento getCelular(String celular) {
 		// retorna lista de celulares
-		AppEstacionamiento ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
+		AppEstacionamiento ce = this.celulares.stream().filter(c -> c.getNumero().equals(celular)).findFirst()
 				.orElse(null);
 		return ce;
 	}

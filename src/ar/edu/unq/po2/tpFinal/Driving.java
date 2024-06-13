@@ -23,7 +23,7 @@ public class Driving extends EstadoMovimiento {
 		EstacionamientoViaApp est = app.crearEstacionamiento();
 		if (!est.estaVigente() && app.hayCreditoDisponible()) {
 					EstacionamientoViaApp estacionamiento = new EstacionamientoViaApp(app.getPatente(),
-							app.getSem().getHorario(), app.getCelular());
+							app.getSem().getHorario(), app.getNumero());
 					estacionamiento.getSem().añadirEstacionamiento(estacionamiento);
 					estacionamiento.setEstaVigente(true);
 		}

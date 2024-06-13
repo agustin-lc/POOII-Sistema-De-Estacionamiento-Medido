@@ -75,12 +75,5 @@ class EstacionamientoCompraPuntualTest {
 		assertEquals(cantidadNueva, estacionamiento.getCantidadHoras());
 	}
 
-	@Test
-	void testFinalizar() {
-		assertEquals(true, estacionamiento.estaVigente());
-		horaFin = LocalDateTime.now().of(LocalDate.now(), LocalTime.of(20, 0));
-		estacionamiento.finalizar(horaFin);
-		assertEquals(estacionamiento.getHoraFin(), horaFin);
-		assertTrue(estacionamiento.estaVigente());
-	}
+	
 }

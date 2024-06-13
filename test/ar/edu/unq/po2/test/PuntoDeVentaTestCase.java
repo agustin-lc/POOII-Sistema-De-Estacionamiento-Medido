@@ -20,12 +20,12 @@ public class PuntoDeVentaTestCase {
 
 	private PuntoDeVenta puntoDeVenta;
     private SistemaDeEstacionamientoMedido sem; 
-   // private AppEstacionamiento celular;
+    private AppEstacionamiento celular;
     @BeforeEach
     void setUp() {
         sem = new SistemaDeEstacionamientoMedido();
         puntoDeVenta = new PuntoDeVenta(sem);
-      //  celular = new AppEstacionamiento("GGG 777", "123456789", sem);
+        celular = new AppEstacionamiento("GGG 777", "123456789", sem);
     }
 
   
@@ -47,6 +47,10 @@ public class PuntoDeVentaTestCase {
     	assertFalse(est.estaVigente());
     	
     }
-  
+    @Test
+    void testRecargarCredito() {
+    	puntoDeVenta.recargarCredito(celular.getNumero(), 500);
+    	assertEquals(celular.getSaldo(), 500);
+    }
     //finalizar estacionamiento pasadas las 8
 }
