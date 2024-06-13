@@ -22,9 +22,7 @@ SistemaDeEstacionamientoMedido sem;
 
 
 	
-	public String getPatente() {
-		return patente;
-	}
+	
 
 	@Override
 	public void finalizar(LocalDateTime hora) {
