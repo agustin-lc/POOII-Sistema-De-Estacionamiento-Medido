@@ -12,6 +12,7 @@ public class SistemaDeEstacionamientoMedido {
 	private List<ZonaDeEstacionamiento> zonasDeEstacionamiento;
 	private LocalDateTime inicioFranja;
 	private LocalDateTime cierreFranja;
+	private LocalDateTime horario;
 	private List<ISuscriptor> suscriptores;
 	private List<Infraccion> infracciones;
 	private List<Estacionamiento> estacionamientosRegistrados;
@@ -24,6 +25,7 @@ public class SistemaDeEstacionamientoMedido {
 		this.setPrecioPorHora(40.00);
 		this.setCierreFranja(LocalDateTime.of(LocalDate.now(), LocalTime.of(20, 0))); // finaliza a las 20:00
 		this.setInicioFranja(LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 0))); // inicia a las 07:00
+		this.horario = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0));
 		zonasDeEstacionamiento = new ArrayList<ZonaDeEstacionamiento>();
 		suscriptores = new ArrayList<ISuscriptor>();
 		infracciones = new ArrayList<Infraccion>();
@@ -31,7 +33,17 @@ public class SistemaDeEstacionamientoMedido {
 		comprasRegistradas = new ArrayList<Compra>();
 
 	}
+	public void avanzarHorario(int horas) {
+	horario = horario.plusHours(horas);
+	}
+	public LocalDateTime getHorario() {
+		return horario;
+	}
 	// GETTERS
+
+	public List<Estacionamiento> getEstacionamientosRegistrados() {
+		return estacionamientosRegistrados;
+	}
 
 	public List<ZonaDeEstacionamiento> getZonasDeEstacionamientos() {
 		return zonasDeEstacionamiento;

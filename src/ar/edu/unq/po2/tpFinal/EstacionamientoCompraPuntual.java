@@ -6,11 +6,12 @@ public class EstacionamientoCompraPuntual extends Estacionamiento {
 	private int cantidadHoras;
 	// CONSTRUCTOR
 	public EstacionamientoCompraPuntual(String patente, LocalDateTime localDateTime, LocalDateTime localDateTime2,
-			int cantidad) {
+			int cantidad, SistemaDeEstacionamientoMedido sem) {
 		this.patente = patente;
 		this.horaInicio = localDateTime;
 		this.horaFin = localDateTime2;
 		this.cantidadHoras = cantidad;
+		this.sem = sem;
 	}
 	public int getCantidadHoras() {
 		return cantidadHoras;

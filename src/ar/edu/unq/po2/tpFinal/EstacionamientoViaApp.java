@@ -22,6 +22,7 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	public void finalizar(LocalDateTime hora) {
 		this.horaFin = hora;
 		// this.estaVigente() = false;
+		this.estaVigente = false;
 	}
 
 	public void agregarSaldo(double monto) {
@@ -44,9 +45,6 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 		return saldo;
 	}
 
-	public boolean estacionamientoVigente() {
-		return sem.poseeEstacionamientoVigente(this.patente);
-	}
 
 	@Override
 	public void walking() {
