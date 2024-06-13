@@ -11,29 +11,31 @@ public class Driving extends EstadoMovimiento {
 			// notificar
 			System.out.print("Alerta de inicio de estacionamiento");
 			// inicia el estacionamiento
-			//app.getModo().inicioDeEstacionamiento(app);
-			iniciarEstacionamiento(app);//iniciar o finaliar
+			// app.getModo().inicioDeEstacionamiento(app);
+			iniciarEstacionamiento(app);// iniciar o finaliar
 		}
 		app.setMovimientoE(new Walking());
 
 	}
+
 	@Override
 	public void driving(AppEstacionamiento app) {
 		// hacer nada
 	}
+
 	private void iniciarEstacionamiento(AppEstacionamiento app) {
 		EstacionamientoViaApp est = app.crearEstacionamiento();
 		app.setEstacionamiento(est);
-		if ( app.hayCreditoDisponible()) {
+		if (app.hayCreditoDisponible()) {
 			int maxHoras = (int) (app.getSaldo() / app.getSem().getPrecioPorHora());
-					app.getSem().añadirEstacionamiento(est);
-					est.setEstaVigente(true);
-					if (maxHoras >= 13) {
-						est.horaFin  = LocalDateTime.now().withHour(19).withMinute(59);
+			app.getSem().añadirEstacionamiento(est);
+			est.setEstaVigente(true);
+			if (maxHoras >= 13) {
+				est.horaFin = LocalDateTime.now().withHour(19).withMinute(59);
 
-					}else {
-						est.horaFin = est.horaInicio.plusHours(maxHoras);
-					}
+			} else {
+				est.horaFin = est.horaInicio.plusHours(maxHoras);
+			}
 		}
 	}
 }

@@ -20,6 +20,14 @@ public class AppEstacionamiento  implements MovementSensor {
 		sem.agregarCelular(this);
 	}
 	
+	public EstacionamientoViaApp crearEstacionamiento() {
+		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero,sem);
+		est.setSem(sem);
+		
+		return est;
+	}
+	
+	
 	public void inicioDeEstacionamiento() {
 		modo.inicioDeEstacionamiento(this);
 	}
@@ -42,13 +50,7 @@ public class AppEstacionamiento  implements MovementSensor {
 	{
 		this.estacionamiento = e;
 	}
-	public EstacionamientoViaApp crearEstacionamiento() {
-		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero,sem);
-		est.setSem(sem);
-		
-		return estacionamiento;
-	}
-	
+
 	@Override
 	public void walking() {
 		// TODO Auto-generated method stub
@@ -106,10 +108,13 @@ public class AppEstacionamiento  implements MovementSensor {
 	}
 
 	public boolean hayCreditoDisponible() {
-		return this.getSaldo() > 0;//sem.getPrecioTotalDeFranja();
+		return this.getSaldo() > 40;//sem.getPrecioTotalDeFranja();
 	}
 
-
+	public int maximoDeHoras() {
+		int maxHoras = (int) ((getSaldo() / getSem().getPrecioPorHora())); 
+		return maxHoras;
+	}
 	
 	
 

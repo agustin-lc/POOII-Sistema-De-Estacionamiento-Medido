@@ -134,11 +134,12 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public void finalizarEstacionamientos() {
+		if(horario.getHour() >= 20) {
 		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
 		this.getEstacionamientosVigentes().clear();
 		this.notificarFinEstacionamiento();
+		}
 	}
-
 	public void añadirCompra(Compra compra) {
 		this.comprasRegistradas.add(compra);
 	}
@@ -152,9 +153,13 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public double getPrecioTotalDeFranja() {
-		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
+		return (this.horasPagas() * this.getPrecioPorHora());
 	}
 
+	public double horasPagas() {
+		// TODO Auto-generated method stub
+		return (this.getCierreFranja().getHour() - this.getInicioFranja().getHour());
+	}
 	public List<AppEstacionamiento> getCelulares() {
 		return this.celulares;
 	}
@@ -171,5 +176,4 @@ public class SistemaDeEstacionamientoMedido {
 		celulares.add(celular);
 	}
 
-
-}
+	}
