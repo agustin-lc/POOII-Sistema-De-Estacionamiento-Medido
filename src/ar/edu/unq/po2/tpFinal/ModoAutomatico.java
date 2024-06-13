@@ -11,6 +11,7 @@ public class ModoAutomatico implements IModoApp {
 					LocalDateTime.now(), estacionamientoApp.getCelular());
 			estacionamiento.getSem().añadirEstacionamiento(estacionamiento);
 			estacionamiento.setEstaVigente(true);
+			
 		}
 
 	}
@@ -22,7 +23,7 @@ public class ModoAutomatico implements IModoApp {
 			estacionamientoApp.setHoraFin(LocalDateTime.now());
 			estacionamientoApp.descontarMontoPorEstacionamiento(estacionamientoApp
 					.getMontoPorTiempoUtilizado(estacionamientoApp.getHoraInicio(), estacionamientoApp.getHoraFin()));
-			estacionamientoApp.getSem().notificarSuscriptores();
+			estacionamientoApp.getSem().notificarFinEstacionamiento();
 		}
 	}
 

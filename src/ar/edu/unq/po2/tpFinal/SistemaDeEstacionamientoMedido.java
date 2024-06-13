@@ -89,8 +89,13 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	// METHODS
-	public void notificarSuscriptores() {
-		suscriptores.forEach(sub -> sub.notificar());
+
+	public void notificarInicioEstacionamiento() {
+		suscriptores.forEach(sub -> sub.notificarInicioEstacionamiento());
+	}
+
+	public void notificarFinEstacionamiento() {
+		suscriptores.forEach(sub -> sub.notificarFinEstacionamiento());
 	}
 
 	public void añadirInfraccion(String patente, Inspector inspec) {
@@ -98,7 +103,6 @@ public class SistemaDeEstacionamientoMedido {
 		ZonaDeEstacionamiento zonaInspector = inspec.getZonaAsignada();
 		Infraccion infraccion = new Infraccion(patente, fechaYHoraActual, inspec, zonaInspector);
 		infracciones.add(infraccion);
-		this.notificarSuscriptores();
 	}
 
 	public boolean poseeEstacionamientoVigente(String patente) {
@@ -107,17 +111,16 @@ public class SistemaDeEstacionamientoMedido {
 
 	public void finalizarEstacionamientos() {
 		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
-		this.notificarSuscriptores();
+		this.notificarFinEstacionamiento();
 	}
 
 	public void añadirCompra(Compra compra) {
 		this.comprasRegistradas.add(compra);
-		this.notificarSuscriptores();
 	}
 
 	public void añadirEstacionamiento(Estacionamiento estacionamiento) {
 		estacionamientosRegistrados.add(estacionamiento);
-		this.notificarSuscriptores();
+		this.notificarInicioEstacionamiento();
 	}
 
 	public double getPrecioTotalDeFranja() {
