@@ -95,4 +95,5 @@ class SistemaDeEstacionamientoMedidoTest {
         verify(suscriptorMock, times(1)).notificarFinEstacionamiento();
     }
 
+    //hacer test todos celulares
 }

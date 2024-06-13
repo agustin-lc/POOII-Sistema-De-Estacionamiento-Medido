@@ -16,7 +16,7 @@ public class SistemaDeEstacionamientoMedido {
 	private List<ISuscriptor> suscriptores;
 	private List<Infraccion> infracciones;
 	private List<Estacionamiento> estacionamientosRegistrados;
-	private List<EstacionamientoViaApp> celulares;
+	private List<AppEstacionamiento> celulares;
 
 	private double precioPorHora;
 	private List<Compra> comprasRegistradas;
@@ -135,6 +135,9 @@ public class SistemaDeEstacionamientoMedido {
 		this.comprasRegistradas.add(compra);
 	}
 
+	public List<Compra> getComprasRegistradas() {
+		return comprasRegistradas;
+	}
 	public void añadirEstacionamiento(Estacionamiento estacionamiento) {
 		estacionamientosRegistrados.add(estacionamiento);
 		this.notificarInicioEstacionamiento();
@@ -144,18 +147,18 @@ public class SistemaDeEstacionamientoMedido {
 		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
 	}
 
-	public List<EstacionamientoViaApp> getCelulares() {
+	public List<AppEstacionamiento> getCelulares() {
 		return this.celulares;
 	}
 
-	public EstacionamientoViaApp getCelular(String celular) {
+	public AppEstacionamiento getCelular(String celular) {
 		// retorna lista de celulares
-		EstacionamientoViaApp ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
+		AppEstacionamiento ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
 				.orElse(null);
 		return ce;
 	}
 
-	public void agregarCelular(EstacionamientoViaApp celular) {
+	public void agregarCelular(AppEstacionamiento celular) {
 		// TODO Auto-generated method stub
 		celulares.add(celular);
 	}

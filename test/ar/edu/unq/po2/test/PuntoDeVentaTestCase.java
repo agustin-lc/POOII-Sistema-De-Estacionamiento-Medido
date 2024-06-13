@@ -9,8 +9,10 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.po2.tpFinal.AppEstacionamiento;
 import ar.edu.unq.po2.tpFinal.Estacionamiento;
 import ar.edu.unq.po2.tpFinal.EstacionamientoCompraPuntual;
+import ar.edu.unq.po2.tpFinal.EstacionamientoViaApp;
 import ar.edu.unq.po2.tpFinal.PuntoDeVenta;
 import ar.edu.unq.po2.tpFinal.SistemaDeEstacionamientoMedido;
 
@@ -18,12 +20,12 @@ public class PuntoDeVentaTestCase {
 
 	private PuntoDeVenta puntoDeVenta;
     private SistemaDeEstacionamientoMedido sem; 
-
+   // private AppEstacionamiento celular;
     @BeforeEach
     void setUp() {
         sem = new SistemaDeEstacionamientoMedido();
         puntoDeVenta = new PuntoDeVenta(sem);
-        //semMock.
+      //  celular = new AppEstacionamiento("GGG 777", "123456789", sem);
     }
 
   
@@ -33,7 +35,7 @@ public class PuntoDeVentaTestCase {
 
     	assertFalse(sem.getEstacionamientosRegistrados().isEmpty());
     	assertEquals(sem.getEstacionamientosRegistrados().getFirst().getPatente(),"ABC 157");
-  
+    	assertFalse(sem.getComprasRegistradas().isEmpty());
     }
     
     @Test
@@ -45,4 +47,6 @@ public class PuntoDeVentaTestCase {
     	assertFalse(est.estaVigente());
     	
     }
+  
+    //finalizar estacionamiento pasadas las 8
 }
