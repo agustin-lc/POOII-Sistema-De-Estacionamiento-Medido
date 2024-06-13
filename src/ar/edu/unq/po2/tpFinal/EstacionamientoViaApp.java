@@ -11,11 +11,10 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	private EstadoMovimiento movimientoE;
 	private Boolean asistencia;
 
-	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, String numero) {
-		this.modo = new ModoManual();
+	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, String numero) {
+		this.setModo(new ModoManual());
 		this.patente = patente;
 		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
 		this.celular = numero;
 		sem.agregarCelular(this);
 	}
@@ -31,7 +30,7 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	}
 
 	public void cambiarModo(IModoApp modo) {
-		this.modo = modo;
+		this.setModo(modo);
 	}
 
 	public SistemaDeEstacionamientoMedido getSem() {
@@ -72,6 +71,33 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 
 	public void alternarAsistencia() {
 		this.asistencia = !asistencia;
+	}
+
+	public IModoApp getModo() {
+		return modo;
+	}
+
+	public void setModo(IModoApp modo) {
+		this.modo = modo;
+	}
+
+	public boolean hayCreditoDisponible() {
+		return this.getSaldo() > sem.getPrecioTotalDeFranja();
+	}
+
+	public LocalDateTime getHoraFin() {
+		if (this.horaFin != null) {
+			System.out.print("Estacionamiento se encuentra vigente");
+		}
+		return this.horaFin;
+	}
+
+	public void descontarMontoPorEstacionamiento(double monto) {
+		saldo = saldo - monto;
+	}
+
+	public double getMontoPorTiempoUtilizado(LocalDateTime inicio, LocalDateTime fin) {
+		return (fin.getHour() - inicio.getHour()) * sem.getPrecioPorHora();
 	}
 
 }

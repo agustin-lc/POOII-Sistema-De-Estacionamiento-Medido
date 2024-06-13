@@ -25,6 +25,7 @@ public class EstacionamientoCompraPuntual extends Estacionamiento {
 	@Override
 	public void finalizar(LocalDateTime hora) {
 		this.setEstaVigente(false);
+		this.setHoraFin(hora);
 	}
 
 }
