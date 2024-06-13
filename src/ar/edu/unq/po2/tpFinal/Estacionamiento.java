@@ -43,9 +43,10 @@ public abstract class Estacionamiento {
 	public boolean estaVigente() {
 		if (getHoraInicio().isBefore(sem.getCierreFranja())&&
 				getHoraInicio().isAfter(sem.getInicioFranja())&&
-				getHoraFin().isBefore(sem.getCierreFranja())
-				&& getHoraFin().isBefore(sem.getHorario())) {
+				
+				 getHoraFin().isAfter(sem.getHorario())) {
 			estaVigente = true;
+			//sem.añadirVigente(this);
 			
 		}else {
 			estaVigente = false;

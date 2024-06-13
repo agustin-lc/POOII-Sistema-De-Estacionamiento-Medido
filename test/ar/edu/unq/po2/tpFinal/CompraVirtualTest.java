@@ -10,14 +10,29 @@ class CompraVirtualTest {
 
 	SistemaDeEstacionamientoMedido sem;
 	PuntoDeVenta punto;
-	
+	ZonaDeEstacionamiento zona;
+	Inspector inspector;
+	AppEstacionamiento celular;
 	@BeforeEach
 	void setUp() throws Exception {
+		sem = new SistemaDeEstacionamientoMedido();
+		inspector = new Inspector("123423441", zona, sem);
+		zona = new ZonaDeEstacionamiento(inspector, sem);
+		celular = new AppEstacionamiento("axz 990","12121212", sem);
+		punto = new PuntoDeVenta(sem, zona);
+		punto.recargarCredito(celular.getNumero(), 1000);
+		sem.setHorario(8);
 	}
 
 	@Test
-	void test() {
+	void testCompraEstacionamientoPor3HorasEnManual() {
+
+		sem.avanzarHorario(3);
+		System.out.print(sem.getHorario());
+		celular.inicioDeEstacionamiento();
+		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
 		
 	}
 
 }
+

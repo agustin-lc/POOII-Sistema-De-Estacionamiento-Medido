@@ -5,7 +5,7 @@ public class ModoManual implements IModoApp {
 	@Override
 	public void inicioDeEstacionamiento(AppEstacionamiento estacionamientoApp) {
 		EstacionamientoViaApp est = estacionamientoApp.crearEstacionamiento();
-			if (!est.estaVigente() && est.hayCreditoDisponible()) {
+			if (!est.estaVigente() && estacionamientoApp.hayCreditoDisponible()) {
 				
 			est.getSem().añadirEstacionamiento(est);
 			est.setEstaVigente(true);

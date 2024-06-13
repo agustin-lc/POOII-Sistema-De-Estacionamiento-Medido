@@ -4,10 +4,12 @@ import java.time.LocalDateTime;
 
 public class PuntoDeVenta {
 	private SistemaDeEstacionamientoMedido sem;
-	
+	ZonaDeEstacionamiento zona;
 
 	// CONSTRUCTOR
-	public PuntoDeVenta(SistemaDeEstacionamientoMedido sem) {
+	public PuntoDeVenta(SistemaDeEstacionamientoMedido sem,ZonaDeEstacionamiento zona) {
+		zona.añadirPuntoVenta(this);
+		this.zona = zona;
 		this.sem = sem;
 	}
 

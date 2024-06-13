@@ -11,6 +11,14 @@ public class AppEstacionamiento  implements MovementSensor {
 
 	private EstacionamientoViaApp estacionamiento;
 	
+	public AppEstacionamiento(String patente, String numero,SistemaDeEstacionamientoMedido sem) {
+		this.setModo(new ModoManual()); // por defecto manual
+		this.patente = patente;
+	//	this.horaInicio = horaInicio;
+		this.numero = numero;
+		this.sem = sem;  
+		sem.agregarCelular(this);
+	}
 	
 	public void inicioDeEstacionamiento() {
 		modo.inicioDeEstacionamiento(this);
@@ -30,17 +38,11 @@ public class AppEstacionamiento  implements MovementSensor {
 		return sem;
 	}
 
-	public AppEstacionamiento(String patente, String numero,SistemaDeEstacionamientoMedido sem) {
-		this.setModo(new ModoManual()); // por defecto manual
-		this.patente = patente;
-	//	this.horaInicio = horaInicio;
-		this.numero = numero;
-		sem.agregarCelular(this);
-		this.sem = sem;
-	}
+	
 
 	public EstacionamientoViaApp crearEstacionamiento() {
-		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero);
+		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero,sem);
+		est.setSem(sem);
 		estacionamiento = est;
 		
 		return estacionamiento;

@@ -29,7 +29,7 @@ public class Walking extends EstadoMovimiento {
 					est.setHoraFin(est.getSem().getHorario());
 					est.descontarMontoPorEstacionamiento(est
 							.getMontoPorTiempoUtilizado(est.getHoraInicio(), est.getHoraFin()));
-					est.getSem().notificarFinEstacionamiento();
+					app.getSem().notificarFinEstacionamiento();
 				}
 	}
 

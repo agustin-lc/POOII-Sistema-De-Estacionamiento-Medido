@@ -39,6 +39,9 @@ public class SistemaDeEstacionamientoMedido {
 	public LocalDateTime getHorario() {
 		return horario;
 	}
+	public void setHorario(int h) {
+		this.horario = LocalDateTime.of(LocalDate.now(), LocalTime.of(h, 0));
+	}
 	// GETTERS
 
 	public List<Estacionamiento> getEstacionamientosRegistrados() {
@@ -77,7 +80,8 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public List<Estacionamiento> getEstacionamientosVigentes() {
-		return estacionamientosRegistrados.stream().filter(e -> e.estaVigente()).collect(Collectors.toList());
+		 List<Estacionamiento> toReturn = estacionamientosRegistrados.stream().filter(e -> e.estaVigente()).collect(Collectors.toList());
+		return toReturn;
 	}
 
 	// SETTERS
@@ -162,5 +166,6 @@ public class SistemaDeEstacionamientoMedido {
 		// TODO Auto-generated method stub
 		celulares.add(celular);
 	}
+
 
 }

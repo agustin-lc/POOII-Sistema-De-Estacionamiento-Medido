@@ -21,10 +21,12 @@ public class PuntoDeVentaTestCase {
 	private PuntoDeVenta puntoDeVenta;
     private SistemaDeEstacionamientoMedido sem; 
     private AppEstacionamiento celular;
+    ZonaDeEstacionamiento zona;
     @BeforeEach
     void setUp() {
         sem = new SistemaDeEstacionamientoMedido();
-        puntoDeVenta = new PuntoDeVenta(sem);
+        zona = new ZonaDeEstacionamiento(null, sem);
+        puntoDeVenta = new PuntoDeVenta(sem,zona);
         celular = new AppEstacionamiento("GGG 777", "123456789", sem);
     }
 
