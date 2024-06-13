@@ -108,11 +108,11 @@ public class AppEstacionamiento  implements MovementSensor {
 	}
 
 	public boolean hayCreditoDisponible() {
-		return this.getSaldo() > 0;//sem.getPrecioTotalDeFranja();
+		return this.getSaldo() > 40;//sem.getPrecioTotalDeFranja();
 	}
 
 	public int maximoDeHoras() {
-		int maxHoras = (int) (getSaldo() / getSem().getPrecioPorHora());
+		int maxHoras = (int) ((getSaldo() / getSem().getPrecioPorHora())); 
 		return maxHoras;
 	}
 	

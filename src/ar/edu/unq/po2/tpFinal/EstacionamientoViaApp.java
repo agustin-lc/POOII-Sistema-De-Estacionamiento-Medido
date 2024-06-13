@@ -40,9 +40,6 @@ SistemaDeEstacionamientoMedido sem;
 		return sem;
 	}
 
-	public String getCelular() {
-		return celular;
-	}
 
 	
 
@@ -58,8 +55,8 @@ SistemaDeEstacionamientoMedido sem;
 		saldo = saldo - monto;
 	}
 
-	public double getMontoPorTiempoUtilizado(LocalDateTime inicio, LocalDateTime fin) {
-		return (fin.getHour() - inicio.getHour()) * sem.getPrecioPorHora();
+	public double getMontoPorTiempoUtilizado( LocalDateTime fin) {
+		return (fin.getHour() - this.horaInicio.getHour()) * sem.getPrecioPorHora();
 	}
 
 }

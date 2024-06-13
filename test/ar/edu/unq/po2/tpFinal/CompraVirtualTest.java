@@ -1,5 +1,6 @@
 package ar.edu.unq.po2.tpFinal;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,18 +21,15 @@ class CompraVirtualTest {
 		zona = new ZonaDeEstacionamiento(inspector, sem);
 		celular = new AppEstacionamiento("axz 990","12121212", sem);
 		punto = new PuntoDeVenta(sem, zona);
-		punto.recargarCredito(celular.getNumero(), 1000);
+		
 		sem.setHorario(8);
 	}
 
 	@Test
 	void testCompraEstacionamientoPor3HorasEnManual() {
-
-		sem.avanzarHorario(3);
-		System.out.print(sem.getHorario());
-		System.out.print(" " + sem.getPrecioTotalDeFranja());
+		punto.recargarCredito(celular.getNumero(), 200);
+		sem.avanzarHorario(1);//reloj 9:00
 		celular.inicioDeEstacionamiento();
-		System.out.print("  "+ celular.getEstacionamiento().getHoraFin());
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
 		
@@ -40,7 +38,36 @@ class CompraVirtualTest {
 
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
+
+	//	System.out.print("total consumido es " + celular.getEstacionamiento().getMontoPorTiempoUtilizado(sem.getHorario()));
+	
+	
+	}
+	
+	@Test
+	void testCompraEstacionamientoHastaFin() {
+		punto.recargarCredito(celular.getNumero(), 700);
+		sem.setHorario(7);
+		celular.inicioDeEstacionamiento();
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
+		
+		sem.avanzarHorario(13);
+
+		sem.finalizarEstacionamientos();
+
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
+
+		System.out.print("total consumido es " + celular.getEstacionamiento().getMontoPorTiempoUtilizado(sem.getHorario()));
 	}
 
+	@Test
+	void testQuiereCOmprarManualPeroNoTieneCredito() {
+		punto.recargarCredito(celular.getNumero(), 10);
+		celular.inicioDeEstacionamiento();
+		assertFalse(celular.getEstacionamiento().estaVigente());
+		assertTrue(sem.getEstacionamientosRegistrados().size() == 0);
+	}
 }
 
