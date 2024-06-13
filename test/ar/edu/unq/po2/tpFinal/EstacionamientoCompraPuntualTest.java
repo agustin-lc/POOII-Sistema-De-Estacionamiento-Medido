@@ -90,19 +90,19 @@ class EstacionamientoCompraPuntualTest {
 		assertEquals(estacionamiento.getHoraFin(), horaFin);
 		assertFalse(estacionamiento.estaVigente());
 	}
-	
+
 	@Test
 	void testGetSem() {
-		assertEquals(sem,estacionamiento.getSem());
+		assertEquals(sem, estacionamiento.getSem());
 	}
-	
+
 	@Test
 	void testSetSEM() {
-		SistemaDeEstacionamientoMedido sem2 =  mock(SistemaDeEstacionamientoMedido.class);
+		SistemaDeEstacionamientoMedido sem2 = mock(SistemaDeEstacionamientoMedido.class);
 		estacionamiento.setSem(sem2);
 		assertEquals(sem2, estacionamiento.getSem());
 	}
-	
+
 	@Test
 	void testEstaVigente() {
 		when(sem.getInicioFranja()).thenReturn(LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 0)));

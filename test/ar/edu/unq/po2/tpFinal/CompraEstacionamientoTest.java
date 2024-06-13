@@ -1,3 +1,4 @@
+
 package ar.edu.unq.po2.tpFinal;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,12 +63,12 @@ class CompraEstacionamientoTest {
 		compra.setPuntoDeCompra(punto2);
 		assertEquals(punto2, compra.getPuntoDeCompra());
 	}
-	
+
 	@Test
 	void testGetCantidadHoras() {
 		assertEquals(horas, compra.getCantHoras());
 	}
-	
+
 	@Test
 	void testSetCantidadHoras() {
 		int horasNuevas = 6;
