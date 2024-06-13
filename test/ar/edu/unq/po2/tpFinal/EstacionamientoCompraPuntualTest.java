@@ -12,8 +12,7 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ar.edu.unq.po2.tpFinal.EstacionamientoCompraPuntual;
-import ar.edu.unq.po2.tpFinal.SistemaDeEstacionamientoMedido;
+
 
 class EstacionamientoCompraPuntualTest {
 	private EstacionamientoCompraPuntual estacionamiento;
