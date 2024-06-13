@@ -14,9 +14,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.tpFinal.AppEstacionamiento;
+import ar.edu.unq.po2.tpFinal.Compra;
 import ar.edu.unq.po2.tpFinal.CompraRecargaSaldo;
 import ar.edu.unq.po2.tpFinal.Estacionamiento;
 import ar.edu.unq.po2.tpFinal.ISuscriptor;
+import ar.edu.unq.po2.tpFinal.Infraccion;
 import ar.edu.unq.po2.tpFinal.Inspector;
 import ar.edu.unq.po2.tpFinal.PuntoDeVenta;
 import ar.edu.unq.po2.tpFinal.SistemaDeEstacionamientoMedido;
@@ -110,7 +112,42 @@ class SistemaDeEstacionamientoMedidoTest {
     	
     }
     @Test
-    void testa() {
-    	
+    void testGetCierreFranja() {
+    	sistema.setCierreFranja(LocalDateTime.now());;
+    	assertEquals(LocalDateTime.now(), sistema.getCierreFranja());
     }
+    
+    @Test 
+    void testGetInfracciones() {
+    	Infraccion infraccion = mock(Infraccion.class);
+    	Inspector inspect = mock(Inspector.class);
+    	when(infraccion.getPatente()).thenReturn("654ABC");
+    	when(infraccion.getInspector()).thenReturn(inspect);
+    	sistema.añadirInfraccion(infraccion.getPatente(), infraccion.getInspector());
+    	assertFalse(sistema.getInfracciones().isEmpty());
+    }
+    
+    @Test
+    void testGetComprasRegistradas() {
+    	Compra compra = mock(Compra.class);
+    	sistema.añadirCompra(compra);
+     	assertFalse(sistema.getComprasRegistradas().isEmpty());
+    }
+    
+    @Test
+    void testGetInspectores() {
+    	Inspector inspect = mock(Inspector.class);
+    	ZonaDeEstacionamiento zona = mock(ZonaDeEstacionamiento.class);
+    	when(zona.getInspector()).thenReturn(inspect);
+    	sistema.añadirZonaEstacionamiento(zona);
+    	assertTrue(sistema.getInspectores().contains(inspect));
+    }
+    
+    @Test
+    void testGetPrecioPorHora() {
+    	double precioXH = 50;
+    	sistema.setPrecioPorHora(precioXH);
+    	assertEquals(sistema.getPrecioPorHora(), precioXH);
+    }
+    
 }

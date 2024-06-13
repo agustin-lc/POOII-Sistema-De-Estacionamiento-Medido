@@ -102,6 +102,10 @@ public class SistemaDeEstacionamientoMedido {
 			suscriptores.remove(suscriptor);
 		}
 	}
+	
+	public void añadirZonaEstacionamiento(ZonaDeEstacionamiento zona) {
+		zonasDeEstacionamiento.add(zona);
+	}
 
 	// METHODS
 
