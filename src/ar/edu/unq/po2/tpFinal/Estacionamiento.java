@@ -7,6 +7,7 @@ public abstract class Estacionamiento {
 	protected LocalDateTime horaInicio;
 	protected LocalDateTime horaFin;
 	protected boolean estaVigente;
+	protected SistemaDeEstacionamientoMedido sem;
 
 	// SETTERS
 	protected void setPatente(String patente) {
@@ -44,5 +45,13 @@ public abstract class Estacionamiento {
 	}
 
 	public abstract void finalizar(LocalDateTime hora);
+
+	public SistemaDeEstacionamientoMedido getSem() {
+		return sem;
+	}
+
+	public void setSem(SistemaDeEstacionamientoMedido sem) {
+		this.sem = sem;
+	}
 
 }
