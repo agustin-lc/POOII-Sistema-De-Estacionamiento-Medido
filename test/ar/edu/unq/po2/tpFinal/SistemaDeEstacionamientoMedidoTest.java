@@ -44,12 +44,12 @@ class SistemaDeEstacionamientoMedidoTest {
 
 		assertTrue(sistema.getSuscriptores().contains(suscriptorMock));
 		sistema.removerSuscriptor(suscriptorMock);
-		assertFalse(sistema.getSuscriptores().contains(estacionamientoMock));
+		assertFalse(sistema.getSuscriptores().contains(suscriptorMock));
 	}
 
 	@Test
     void testPoseeEstacionamientoVigente() {
-        
+		sistema.añadirSuscriptor(suscriptorMock);
         when(estacionamientoMock.getPatente()).thenReturn("ABC123");
         when(estacionamientoMock.estaVigente()).thenReturn(true);
 
@@ -58,6 +58,7 @@ class SistemaDeEstacionamientoMedidoTest {
         boolean resultado = sistema.poseeEstacionamientoVigente("ABC123");
 
         assertTrue(resultado);
+        verify(suscriptorMock).notificarInicioEstacionamiento();
     }
 
 	@Test

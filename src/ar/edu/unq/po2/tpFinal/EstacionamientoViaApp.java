@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 
 public class EstacionamientoViaApp extends Estacionamiento  {
 	
-	private String patente;
-	private String celular;
+
 	private double saldo;
 	
 	
@@ -15,7 +14,7 @@ SistemaDeEstacionamientoMedido sem;
 	
 		this.patente = patente;
 	this.horaInicio = horaInicio;
-		this.celular = numero;
+		
 		this.sem = sem;
 		
 	}
