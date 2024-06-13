@@ -132,7 +132,6 @@ class SistemaDeEstacionamientoMedidoTest {
 	@Test
 	void testGetCierreFranja() {
 		sistema.setCierreFranja(LocalDateTime.now());
-		;
 		assertEquals(LocalDateTime.now(), sistema.getCierreFranja());
 	}
 
