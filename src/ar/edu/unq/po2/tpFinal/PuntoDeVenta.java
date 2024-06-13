@@ -27,7 +27,7 @@ public class PuntoDeVenta {
 				LocalDateTime.now(), horas);
 		sem.añadirCompra(ticketEstacionamiento);
 	}
-	public void registrarEstacionamiento(int horas, String patente) {
+	private void registrarEstacionamiento(int horas, String patente) {
 		EstacionamientoCompraPuntual estacionamiento = new EstacionamientoCompraPuntual(patente, LocalDateTime.now(),
 				LocalDateTime.now().plusHours(horas), horas);
 		sem.añadirEstacionamiento(estacionamiento);
