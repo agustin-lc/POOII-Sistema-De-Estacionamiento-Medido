@@ -11,13 +11,10 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	private EstadoMovimiento movimientoE;
 	private Boolean asistencia;
 
-	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, LocalDateTime horaFin, String numero) {
-		this.modo = new ModoManual();
 	public EstacionamientoViaApp(String patente, LocalDateTime horaInicio, String numero) {
 		this.setModo(new ModoManual());
 		this.patente = patente;
 		this.horaInicio = horaInicio;
-		this.horaFin = horaFin;
 		this.celular = numero;
 		sem.agregarCelular(this);
 	}
@@ -31,7 +28,6 @@ public class EstacionamientoViaApp extends Estacionamiento implements MovementSe
 	}
 
 	public void cambiarModo(IModoApp modo) {
-		this.modo = modo;
 		this.setModo(modo);
 	}
 
