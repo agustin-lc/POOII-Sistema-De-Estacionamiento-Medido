@@ -124,7 +124,7 @@ public class SistemaDeEstacionamientoMedido {
 		return (this.getInicioFranja().getHour() + this.getCierreFranja().getHour()) * this.getPrecioPorHora();
 	}
 
-	public EstacionamientoViaApp getCelulares(int celular) {
+	public EstacionamientoViaApp getCelulares(String celular) {
 		// retorna lista de celulares
 		EstacionamientoViaApp ce = this.celulares.stream().filter(c -> c.getCelular().equals(celular)).findFirst()
 				.orElse(null);
