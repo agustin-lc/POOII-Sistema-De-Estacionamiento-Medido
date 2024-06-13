@@ -10,19 +10,19 @@ public abstract class Estacionamiento {
 	protected SistemaDeEstacionamientoMedido sem;
 
 	// SETTERS
-	protected void setPatente(String patente) {
+	public void setPatente(String patente) {
 		this.patente = patente;
 	}
 
-	protected void setHoraInicio(LocalDateTime horaInicio) {
+	public void setHoraInicio(LocalDateTime horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	protected void setHoraFin(LocalDateTime horaFin) {
+	public void setHoraFin(LocalDateTime horaFin) {
 		this.horaFin = horaFin;
 	}
 
-	protected void setEstaVigente(boolean expresion) {
+	public void setEstaVigente(boolean expresion) {
 		this.estaVigente = expresion;
 
 	}
@@ -41,7 +41,7 @@ public abstract class Estacionamiento {
 	}
 
 	public boolean estaVigente() {
-		return false; // LO TOMAMOS COMO PREDETERMINADO QUE EL ESTACIONAMIENTO
+		return true; // LO TOMAMOS COMO PREDETERMINADO QUE EL ESTACIONAMIENTO
 	}
 
 	public abstract void finalizar(LocalDateTime hora);
