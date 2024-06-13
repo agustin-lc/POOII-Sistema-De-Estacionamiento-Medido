@@ -43,6 +43,7 @@ public class SistemaDeEstacionamientoMedido {
 
 	public List<Estacionamiento> getEstacionamientosRegistrados() {
 		return estacionamientosRegistrados;
+	}
 	public List<ISuscriptor> getSuscriptores() {
 		return suscriptores;
 	}

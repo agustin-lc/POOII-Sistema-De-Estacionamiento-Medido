@@ -22,7 +22,7 @@ class EstacionamientoCompraPuntualTest {
 	void setUp() throws Exception {
 		horaInicio = LocalDateTime.now().of(LocalDate.now(), LocalTime.of(7, 0));
 		horaFin = horaInicio.plusHours(cantidadHoras);
-		estacionamiento = new EstacionamientoCompraPuntual(patente, horaInicio, horaFin, cantidadHoras);
+		estacionamiento = new EstacionamientoCompraPuntual(patente, horaInicio, horaFin, cantidadHoras, null);
 	}
 
 	@Test
