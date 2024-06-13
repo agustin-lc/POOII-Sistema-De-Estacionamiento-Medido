@@ -69,5 +69,43 @@ class CompraVirtualTest {
 		assertFalse(celular.getEstacionamiento().estaVigente());
 		assertTrue(sem.getEstacionamientosRegistrados().size() == 0);
 	}
+	
+	@Test
+	void testCambiaAModoAutomatico() {
+		//EstadoMovimiento estado = new Driving();
+		//estado = new Driving();
+		punto.recargarCredito(celular.getNumero(), 5000);
+		celular.cambiarModo(new ModoAutomatico());
+		celular.alternarAsistencia();
+	//	celular.setMovimientoE(estado);
+		celular.driving();
+		celular.driving();
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 0);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
+		celular.walking();
+		celular.walking();
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
+		celular.driving();
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
+		assertFalse(celular.getEstacionamiento().estaVigente());
+	}
+	@Test
+	void testModoAutomaticoYNoHaySaldoMasDe2Horas() {
+		punto.recargarCredito(celular.getNumero(), 80);
+		celular.cambiarModo(new ModoAutomatico());
+		celular.alternarAsistencia();
+		celular.driving();
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 0);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
+		celular.walking();
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
+		assertEquals(celular.getEstacionamiento().getHoraFin().getHour(), 10);
+		sem.avanzarHorario(3);
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
+	}
 }
 

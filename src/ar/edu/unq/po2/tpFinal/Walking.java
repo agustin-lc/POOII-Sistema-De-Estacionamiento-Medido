@@ -24,13 +24,17 @@ public class Walking extends EstadoMovimiento {
 	private void terminarEstacionamiento(AppEstacionamiento app) {
 		// TODO Auto-generated method stub
 		EstacionamientoViaApp est = app.getEstacionamiento();
-		if (est.estaVigente()) {
-					est.setEstaVigente(false);
-					est.setHoraFin(est.getSem().getHorario());
-					est.descontarMontoPorEstacionamiento(est
-							.getMontoPorTiempoUtilizado( est.getHoraFin()));
-					app.getSem().notificarFinEstacionamiento();
+		est.finalizar(app.getSem().getHorario());
+		
+// if (est.estaVigente()) {
+			//		est.setEstaVigente(false);
+			//.setHoraFin(est.getSem().getHorario());
+//					est.descontarMontoPorEstacionamiento(est
+//							.getMontoPorTiempoUtilizado( est.getHoraFin()));
+//					app.getSem().notificarFinEstacionamiento();
+		est.descontarMontoPorEstacionamiento(est.getMontoPorTiempoUtilizado(est.getHoraFin()));
+		est.getSem().notificarFinEstacionamiento();
 				}
-	}
+	
 
 }

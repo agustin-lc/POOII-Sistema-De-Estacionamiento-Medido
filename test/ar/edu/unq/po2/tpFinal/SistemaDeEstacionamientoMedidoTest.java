@@ -43,6 +43,8 @@ class SistemaDeEstacionamientoMedidoTest {
 		sistema.añadirSuscriptor(suscriptorMock);
 
 		assertTrue(sistema.getSuscriptores().contains(suscriptorMock));
+		sistema.removerSuscriptor(suscriptorMock);
+		assertFalse(sistema.getSuscriptores().contains(estacionamientoMock));
 	}
 
 	@Test

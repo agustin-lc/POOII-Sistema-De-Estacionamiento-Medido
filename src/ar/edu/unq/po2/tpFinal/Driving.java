@@ -25,14 +25,12 @@ public class Driving extends EstadoMovimiento {
 		EstacionamientoViaApp est = app.crearEstacionamiento();
 		app.setEstacionamiento(est);
 		if ( app.hayCreditoDisponible()) {
-			int maxHoras = (int) (app.getSaldo() / app.getSem().getPrecioPorHora());
 					app.getSem().añadirEstacionamiento(est);
 					est.setEstaVigente(true);
-					if (maxHoras >= 13) {
-						est.horaFin  = LocalDateTime.now().withHour(19).withMinute(59);
-
+					if (app.maximoDeHoras() >= 13) {
+						est.horaFin  = app.getSem().getCierreFranja();
 					}else {
-						est.horaFin = est.horaInicio.plusHours(maxHoras);
+						est.horaFin = est.horaInicio.plusHours(app.maximoDeHoras());
 					}
 		}
 	}

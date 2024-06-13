@@ -30,6 +30,10 @@ public class ZonaDeEstacionamientoTestCase {
     }
 
     @Test
+    void testPuntosDeVenta() {
+    	assertEquals(sem.getPuntosDeVentas().size(),1);
+    }
+    @Test
     void testConstructorAndGetInspector() {
         assertEquals(inspectorMock, zona.getInspector());
     }

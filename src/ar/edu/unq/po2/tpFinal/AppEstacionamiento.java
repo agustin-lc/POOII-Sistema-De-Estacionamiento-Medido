@@ -18,10 +18,13 @@ public class AppEstacionamiento  implements MovementSensor {
 		this.numero = numero;
 		this.sem = sem;  
 		sem.agregarCelular(this);
+		//this.movimientoE(new )
+		asistencia = false;
+		movimientoE = new Driving();
 	}
 	
 	public EstacionamientoViaApp crearEstacionamiento() {
-		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero,sem);
+		EstacionamientoViaApp est = new EstacionamientoViaApp(this.getPatente(), sem.getHorario(),numero,sem);
 		est.setSem(sem);
 		
 		return est;
@@ -55,6 +58,9 @@ public class AppEstacionamiento  implements MovementSensor {
 	public void walking() {
 		// TODO Auto-generated method stub
 		//movimientoE.walking(this);
+		//movimientoE = new Walking();
+//		modo.walking(this);
+//		movimientoE.walking(this);
 		modo.walking(this);
 	}
 
@@ -62,7 +68,9 @@ public class AppEstacionamiento  implements MovementSensor {
 	public void driving() {
 		// TODO Auto-generated method stub
 	//	movimientoE.driving(this);
+		//movimientoE = new Driving();
 		modo.driving(this);
+//		movimientoE.driving(this);
 	}
 	
 	public String getPatente() {
@@ -75,6 +83,8 @@ public class AppEstacionamiento  implements MovementSensor {
 
 	public void cambiarModo(IModoApp modo) {
 		this.setModo(modo);
+	//	this.movimientoE = new Driving();
+		modo.driving(this);
 	}
 
 	public String getNumero() {
@@ -99,9 +109,7 @@ public class AppEstacionamiento  implements MovementSensor {
 		this.asistencia = !asistencia;
 	}
 
-	public IModoApp getModo() {
-		return modo;
-	}
+	
 
 	public void setModo(IModoApp modo) {
 		this.modo = modo;
