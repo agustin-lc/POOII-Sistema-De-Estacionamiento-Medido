@@ -1,5 +1,7 @@
 package ar.edu.unq.po2.tpFinal;
 
+import static org.mockito.ArgumentMatchers.intThat;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -167,6 +169,16 @@ public class SistemaDeEstacionamientoMedido {
 		return ce;
 	}
 
+	public double creditoDeTodos() {
+		int monto = 0;
+		List<AppEstacionamiento> cels = this.getCelulares();
+		for (AppEstacionamiento c : cels) {
+				monto = (int) (monto + c.getSaldo());
+			}
+		return monto;
+
+		}
+	
 	public void agregarCelular(AppEstacionamiento celular) {
 		// TODO Auto-generated method stub
 		celulares.add(celular);

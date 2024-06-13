@@ -36,6 +36,19 @@ class SistemaDeEstacionamientoMedidoTest {
 		suscriptorMock = mock(ISuscriptor.class);
 		estacionamientoMock = mock(Estacionamiento.class);
 	}
+	
+	@Test
+	void testCelulares() {
+		AppEstacionamiento c1 = new AppEstacionamiento("s", "1212123", sistema);
+		AppEstacionamiento c2 = new AppEstacionamiento("1f", "4", sistema);
+		AppEstacionamiento c3 = new AppEstacionamiento("j3", "1414", sistema);
+		ZonaDeEstacionamiento zona = new ZonaDeEstacionamiento(null, sistema);
+		PuntoDeVenta p = new PuntoDeVenta(sistema, zona);
+		p.recargarCredito("1212123", 300);
+		p.recargarCredito("4", 800);
+		p.recargarCredito("1414", 100);
+		assertEquals(sistema.creditoDeTodos(),1200);
+	}
 
 	@Test
 	void testAñadirSuscriptor() {
