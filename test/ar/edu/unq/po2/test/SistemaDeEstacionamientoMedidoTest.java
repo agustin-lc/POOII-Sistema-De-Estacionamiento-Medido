@@ -1,0 +1,98 @@
+package ar.edu.unq.po2.test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import ar.edu.unq.po2.tpFinal.CompraRecargaSaldo;
+import ar.edu.unq.po2.tpFinal.Estacionamiento;
+import ar.edu.unq.po2.tpFinal.ISuscriptor;
+import ar.edu.unq.po2.tpFinal.Inspector;
+import ar.edu.unq.po2.tpFinal.PuntoDeVenta;
+import ar.edu.unq.po2.tpFinal.SistemaDeEstacionamientoMedido;
+import ar.edu.unq.po2.tpFinal.ZonaDeEstacionamiento;
+
+class SistemaDeEstacionamientoMedidoTest {
+	private SistemaDeEstacionamientoMedido sistema;
+    private ISuscriptor suscriptorMock;
+
+    @BeforeEach
+    void setUp() {
+        sistema = new SistemaDeEstacionamientoMedido();
+        suscriptorMock = mock(ISuscriptor.class);
+        
+    }
+
+    @Test
+    void testAñadirSuscriptor() {
+        
+        sistema.añadirSuscriptor(suscriptorMock);
+        
+        assertTrue(sistema.getSuscriptores().contains(suscriptorMock));
+    }
+    
+    @Test
+    void testPoseeEstacionamientoVigente() {
+        Estacionamiento estacionamientoMock = mock(Estacionamiento.class);
+        when(estacionamientoMock.getPatente()).thenReturn("ABC123");
+        when(estacionamientoMock.estaVigente()).thenReturn(true);
+
+        sistema.añadirEstacionamiento(estacionamientoMock);
+
+        boolean resultado = sistema.poseeEstacionamientoVigente("ABC123");
+
+        assertTrue(resultado);
+    }
+
+    
+    @Test
+    void testNoPoseeEstacionamientoVigente() {
+        Estacionamiento estacionamientoMock = mock(Estacionamiento.class);
+        when(estacionamientoMock.getPatente()).thenReturn("XYZ789");
+        when(estacionamientoMock.estaVigente()).thenReturn(false);
+
+        sistema.añadirEstacionamiento(estacionamientoMock);
+
+        boolean resultado = sistema.poseeEstacionamientoVigente("ABC123");
+
+        assertFalse(resultado);
+    }
+    
+    @Test
+    void testFinalizarEstacionamientos() {
+        
+        SistemaDeEstacionamientoMedido sistema = new SistemaDeEstacionamientoMedido();
+        ISuscriptor suscriptorMock = mock(ISuscriptor.class);
+        Estacionamiento estacionamiento1 = mock(Estacionamiento.class);
+        Estacionamiento estacionamiento2 = mock(Estacionamiento.class);
+
+        when(estacionamiento1.getPatente()).thenReturn("ABC123");
+        when(estacionamiento1.getHoraInicio()).thenReturn(LocalDateTime.now().minusHours(1));
+        when(estacionamiento1.getHoraFin()).thenReturn(LocalDateTime.now().plusHours(1));
+
+        when(estacionamiento2.getPatente()).thenReturn("XYZ789");
+        when(estacionamiento2.getHoraInicio()).thenReturn(LocalDateTime.now().minusHours(2));
+        when(estacionamiento2.getHoraFin()).thenReturn(LocalDateTime.now().plusHours(2));
+
+        sistema.añadirSuscriptor(suscriptorMock);
+        sistema.añadirEstacionamiento(estacionamiento1);
+        sistema.añadirEstacionamiento(estacionamiento2);
+
+        
+        sistema.finalizarEstacionamientos();
+
+        assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento1));
+        assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento2));
+        verify(suscriptorMock, times(1)).notificarFinEstacionamiento();
+    }
+
+}
