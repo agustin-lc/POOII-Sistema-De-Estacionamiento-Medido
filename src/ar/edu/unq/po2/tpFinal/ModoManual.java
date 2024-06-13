@@ -7,25 +7,37 @@ public class ModoManual implements IModoApp {
 	@Override
 	public void inicioDeEstacionamiento(AppEstacionamiento app) {
 		EstacionamientoViaApp est = app.crearEstacionamiento();
-		app.setEstacionamiento(est);
-		int maxHoras = (int) (app.getSaldo() / app.getSem().getPrecioPorHora());
+		//app.setEstacionamiento(est);
+		//int maxHoras = (int) (app.getSaldo() / app.getSem().getPrecioPorHora());
 			if (app.hayCreditoDisponible()) {
+				System.out.println("Credito disponible "+ app.getSaldo());
 				
 			app.getSem().añadirEstacionamiento(est);
-			app.getEstacionamiento().setEstaVigente(true);
-			if (maxHoras >= 13) {
+		//	if (app.maximoDeHoras() >= 12) {
 				est.horaFin  = LocalDateTime.now().withHour(19).withMinute(59);
-
-				}else {
-				est.horaFin = est.horaInicio.plusHours(maxHoras);
+				System.out.println("Estacionamiento hasta las 19:59");
+				est.setEstaVigente(true);
+				//app.getEstacionamiento().setHoraFin(LocalDateTime.now().withHour(19).withMinute(59));
+				//app.getEstacionamiento().setEstaVigente(true);
+			//	}else {
+				est.horaFin = est.horaInicio.plusHours(app.maximoDeHoras() );
+				est.setEstaVigente(true);
+//					app.getEstacionamiento().setHoraFin(app.getEstacionamiento().getHoraInicio().plusHours(
+//							Math.max(app.maximoDeHoras(),13)));
+//					app.getEstacionamiento().setEstaVigente(true);
+				
+			}else {
+					app.getEstacionamiento().setEstaVigente(false);
 				}
-			}
-
+			
+			app.setEstacionamiento(est);
 	}
+
+
 
 	@Override
 	public void finDeEstacionamiento(AppEstacionamiento estacionamientoApp) {
-		EstacionamientoViaApp est = estacionamientoApp.crearEstacionamiento();
+		EstacionamientoViaApp est = estacionamientoApp.getEstacionamiento();
 		if (est.estaVigente()) {
 				est.setEstaVigente(false);
 		est.setHoraFin(estacionamientoApp.getSem().getHorario());

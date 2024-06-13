@@ -33,8 +33,13 @@ class CompraVirtualTest {
 		celular.inicioDeEstacionamiento();
 		System.out.print("  "+ celular.getEstacionamiento().getHoraFin());
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
-		//assertEquals(sem.getEstacionamientosVigentes().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
+		
+		sem.avanzarHorario(3);
+		celular.finEstacionamiento();
 
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
 	}
 
 }

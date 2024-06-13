@@ -171,5 +171,5 @@ public class SistemaDeEstacionamientoMedido {
 		celulares.add(celular);
 	}
 
+	}
 
-}
