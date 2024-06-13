@@ -9,9 +9,10 @@ public class ZonaDeEstacionamiento {
 	private List<PuntoDeVenta> puntosDeVentas;
 	private Inspector inspector;
 
-	public ZonaDeEstacionamiento(Inspector inspec) {
+	public ZonaDeEstacionamiento(Inspector inspec,SistemaDeEstacionamientoMedido sem) {
 		this.puntosDeVentas = new ArrayList<PuntoDeVenta>();
 		this.inspector = inspec;
+		sem.getZonasDeEstacionamientos().add(this);
 	}
 
 	public List<PuntoDeVenta> getPuntoDeVenta() {

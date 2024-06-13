@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.po2.tpFinal.AppEstacionamiento;
 import ar.edu.unq.po2.tpFinal.CompraRecargaSaldo;
 import ar.edu.unq.po2.tpFinal.Estacionamiento;
 import ar.edu.unq.po2.tpFinal.ISuscriptor;
@@ -25,11 +26,12 @@ class SistemaDeEstacionamientoMedidoTest {
 	private SistemaDeEstacionamientoMedido sistema;
     private ISuscriptor suscriptorMock;
 
+    Estacionamiento estacionamientoMock;
     @BeforeEach
     void setUp() {
         sistema = new SistemaDeEstacionamientoMedido();
         suscriptorMock = mock(ISuscriptor.class);
-        
+         estacionamientoMock = mock(Estacionamiento.class);
     }
 
     @Test
@@ -42,7 +44,7 @@ class SistemaDeEstacionamientoMedidoTest {
     
     @Test
     void testPoseeEstacionamientoVigente() {
-        Estacionamiento estacionamientoMock = mock(Estacionamiento.class);
+        
         when(estacionamientoMock.getPatente()).thenReturn("ABC123");
         when(estacionamientoMock.estaVigente()).thenReturn(true);
 
@@ -56,7 +58,7 @@ class SistemaDeEstacionamientoMedidoTest {
     
     @Test
     void testNoPoseeEstacionamientoVigente() {
-        Estacionamiento estacionamientoMock = mock(Estacionamiento.class);
+      
         when(estacionamientoMock.getPatente()).thenReturn("XYZ789");
         when(estacionamientoMock.estaVigente()).thenReturn(false);
 
@@ -96,4 +98,19 @@ class SistemaDeEstacionamientoMedidoTest {
     }
 
     //hacer test todos celulares
+    @Test
+    void testTodosLosCelulares() {
+    	AppEstacionamiento cel1 = mock(AppEstacionamiento.class);
+    	AppEstacionamiento cel2 = mock(AppEstacionamiento.class);
+    	AppEstacionamiento cel3 = mock(AppEstacionamiento.class);
+    	
+    	//when(cel1.getNumero())
+    	sistema.agregarCelular(cel3);sistema.agregarCelular(cel1);sistema.agregarCelular(cel2);
+    	assertEquals(sistema.getCelulares().size(),3);
+    	
+    }
+    @Test
+    void testa() {
+    	
+    }
 }

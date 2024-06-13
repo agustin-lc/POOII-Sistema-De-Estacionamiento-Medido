@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.tpFinal.Inspector;
 import ar.edu.unq.po2.tpFinal.PuntoDeVenta;
+import ar.edu.unq.po2.tpFinal.SistemaDeEstacionamientoMedido;
 import ar.edu.unq.po2.tpFinal.ZonaDeEstacionamiento;
 
 public class ZonaDeEstacionamientoTestCase {
@@ -19,13 +20,13 @@ public class ZonaDeEstacionamientoTestCase {
 	
     private Inspector inspectorMock; 	   // DOC
     private PuntoDeVenta puntoDeVentaMock; // DOC
-
+    private SistemaDeEstacionamientoMedido sem;
     @BeforeEach
     void setUp() {
         inspectorMock = mock(Inspector.class);
         puntoDeVentaMock = mock(PuntoDeVenta.class);
-        
-        zona = new ZonaDeEstacionamiento(inspectorMock);
+        sem = new SistemaDeEstacionamientoMedido();
+        zona = new ZonaDeEstacionamiento(inspectorMock, sem);
     }
 
     @Test

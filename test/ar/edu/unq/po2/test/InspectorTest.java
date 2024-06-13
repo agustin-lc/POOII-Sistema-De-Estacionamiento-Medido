@@ -22,7 +22,9 @@ class InspectorTest {
 	private ZonaDeEstacionamiento zona;
 	private Inspector inspector;
 	private String numero;
-
+	ZonaDeEstacionamiento zona2;
+	Inspector i;
+	SistemaDeEstacionamientoMedido sem2;
 	@BeforeEach
 	void setUp() throws Exception {
 		sem = mock(SistemaDeEstacionamientoMedido.class);
@@ -30,6 +32,9 @@ class InspectorTest {
 		patente = "AB123CD";
 		numero = "12345678";
 		inspector = new Inspector(numero, zona, sem);
+		 sem2 = new SistemaDeEstacionamientoMedido();
+		 zona2 = new ZonaDeEstacionamiento(i,sem2);
+		 i = new Inspector("12345555", zona2, sem2);
 	}
 
 	@Test
@@ -92,6 +97,11 @@ class InspectorTest {
 		inspector.validarEstacionamientoVigente(patente);
 
 		verify(sem).añadirInfraccion(patente, inspector);
+		
+		
+		i.validarEstacionamientoVigente(patente);
+		assertEquals(sem2.getInfracciones().size(),1);
+		assertEquals(sem2.getInspectores().size(),1);
 	}
 
 	@Test
