@@ -1,6 +1,9 @@
 package ar.edu.unq.po2.tpFinal;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.tpFinal.EstacionamientoCompraPuntual;
+import ar.edu.unq.po2.tpFinal.SistemaDeEstacionamientoMedido;
 
 class EstacionamientoCompraPuntualTest {
 	private EstacionamientoCompraPuntual estacionamiento;
@@ -17,12 +21,14 @@ class EstacionamientoCompraPuntualTest {
 	private LocalDateTime horaInicio;
 	private LocalDateTime horaFin;
 	private int cantidadHoras;
+	private SistemaDeEstacionamientoMedido sem;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		horaInicio = LocalDateTime.now().of(LocalDate.now(), LocalTime.of(7, 0));
 		horaFin = horaInicio.plusHours(cantidadHoras);
-		estacionamiento = new EstacionamientoCompraPuntual(patente, horaInicio, horaFin, cantidadHoras, null);
+		sem = mock(SistemaDeEstacionamientoMedido.class);
+		estacionamiento = new EstacionamientoCompraPuntual(patente, horaInicio, horaFin, cantidadHoras, sem);
 	}
 
 	@Test
@@ -75,5 +81,35 @@ class EstacionamientoCompraPuntualTest {
 		assertEquals(cantidadNueva, estacionamiento.getCantidadHoras());
 	}
 
-	
+	@Test
+	void testFinalizar() {
+		when(sem.getInicioFranja()).thenReturn(LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 0)));
+		when(sem.getCierreFranja()).thenReturn(LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 0)));
+		horaFin = LocalDateTime.now().of(LocalDate.now(), LocalTime.of(20, 0));
+		estacionamiento.finalizar(horaFin);
+		assertEquals(estacionamiento.getHoraFin(), horaFin);
+		assertFalse(estacionamiento.estaVigente());
+	}
+
+	@Test
+	void testGetSem() {
+		assertEquals(sem, estacionamiento.getSem());
+	}
+
+	@Test
+	void testSetSEM() {
+		SistemaDeEstacionamientoMedido sem2 = mock(SistemaDeEstacionamientoMedido.class);
+		estacionamiento.setSem(sem2);
+		assertEquals(sem2, estacionamiento.getSem());
+	}
+
+	@Test
+	void testEstaVigente() {
+		when(sem.getInicioFranja()).thenReturn(LocalDateTime.of(LocalDate.now(), LocalTime.of(7, 0)));
+		when(sem.getCierreFranja()).thenReturn(LocalDateTime.of(LocalDate.now(), LocalTime.of(20, 0)));
+		horaFin = LocalDateTime.now().of(LocalDate.now(), LocalTime.of(17, 0));
+		horaInicio = LocalDateTime.now().of(LocalDate.now(), LocalTime.of(15, 0));
+		assertTrue(estacionamiento.getHoraFin().isBefore(sem.getCierreFranja()));
+		assertFalse(estacionamiento.getHoraInicio().isAfter(sem.getInicioFranja()));
+	}
 }
