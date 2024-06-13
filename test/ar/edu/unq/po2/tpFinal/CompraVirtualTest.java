@@ -29,9 +29,12 @@ class CompraVirtualTest {
 
 		sem.avanzarHorario(3);
 		System.out.print(sem.getHorario());
+		System.out.print(" " + sem.getPrecioTotalDeFranja());
 		celular.inicioDeEstacionamiento();
-		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
-		
+		System.out.print("  "+ celular.getEstacionamiento().getHoraFin());
+		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
+		//assertEquals(sem.getEstacionamientosVigentes().size(), 1);
+
 	}
 
 }

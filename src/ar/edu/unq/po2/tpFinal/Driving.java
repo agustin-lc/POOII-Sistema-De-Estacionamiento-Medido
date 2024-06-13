@@ -1,5 +1,7 @@
 package ar.edu.unq.po2.tpFinal;
 
+import java.time.LocalDateTime;
+
 public class Driving extends EstadoMovimiento {
 	@Override
 	public void walking(AppEstacionamiento app) {
@@ -21,10 +23,17 @@ public class Driving extends EstadoMovimiento {
 	}
 	private void iniciarEstacionamiento(AppEstacionamiento app) {
 		EstacionamientoViaApp est = app.crearEstacionamiento();
-		if (!est.estaVigente() && app.hayCreditoDisponible()) {
-					
+		app.setEstacionamiento(est);
+		if ( app.hayCreditoDisponible()) {
+			int maxHoras = (int) (app.getSaldo() / app.getSem().getPrecioPorHora());
 					app.getSem().añadirEstacionamiento(est);
 					est.setEstaVigente(true);
+					if (maxHoras >= 13) {
+						est.horaFin  = LocalDateTime.now().withHour(19).withMinute(59);
+
+					}else {
+						est.horaFin = est.horaInicio.plusHours(maxHoras);
+					}
 		}
 	}
 }

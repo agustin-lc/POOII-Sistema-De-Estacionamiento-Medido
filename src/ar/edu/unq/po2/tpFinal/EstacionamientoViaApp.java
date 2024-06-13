@@ -17,7 +17,7 @@ SistemaDeEstacionamientoMedido sem;
 	this.horaInicio = horaInicio;
 		this.celular = numero;
 		this.sem = sem;
-		horaFin  = LocalDateTime.now().withHour(19).withMinute(59);
+		
 	}
 
 

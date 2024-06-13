@@ -1,15 +1,24 @@
 package ar.edu.unq.po2.tpFinal;
 
+import java.time.LocalDateTime;
+
 public class ModoManual implements IModoApp {
 
 	@Override
-	public void inicioDeEstacionamiento(AppEstacionamiento estacionamientoApp) {
-		EstacionamientoViaApp est = estacionamientoApp.crearEstacionamiento();
-			if (!est.estaVigente() && estacionamientoApp.hayCreditoDisponible()) {
+	public void inicioDeEstacionamiento(AppEstacionamiento app) {
+		EstacionamientoViaApp est = app.crearEstacionamiento();
+		app.setEstacionamiento(est);
+		int maxHoras = (int) (app.getSaldo() / app.getSem().getPrecioPorHora());
+			if (app.hayCreditoDisponible()) {
 				
-			est.getSem().añadirEstacionamiento(est);
-			est.setEstaVigente(true);
-				
+			app.getSem().añadirEstacionamiento(est);
+			app.getEstacionamiento().setEstaVigente(true);
+			if (maxHoras >= 13) {
+				est.horaFin  = LocalDateTime.now().withHour(19).withMinute(59);
+
+				}else {
+				est.horaFin = est.horaInicio.plusHours(maxHoras);
+				}
 			}
 
 	}

@@ -38,12 +38,13 @@ public class AppEstacionamiento  implements MovementSensor {
 		return sem;
 	}
 
-	
-
+	public void setEstacionamiento(EstacionamientoViaApp e)
+	{
+		this.estacionamiento = e;
+	}
 	public EstacionamientoViaApp crearEstacionamiento() {
 		EstacionamientoViaApp est = new EstacionamientoViaApp(patente, sem.getHorario(),numero,sem);
 		est.setSem(sem);
-		estacionamiento = est;
 		
 		return estacionamiento;
 	}
@@ -105,7 +106,7 @@ public class AppEstacionamiento  implements MovementSensor {
 	}
 
 	public boolean hayCreditoDisponible() {
-		return this.getSaldo() > sem.getPrecioTotalDeFranja();
+		return this.getSaldo() > 0;//sem.getPrecioTotalDeFranja();
 	}
 
 
