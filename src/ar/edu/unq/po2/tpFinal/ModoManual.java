@@ -47,7 +47,7 @@ public class ModoManual implements IModoApp {
 		//		est.setEstaVigente(false);
 		//est.setHoraFin(estacionamientoApp.getSem().getHorario());
 		est.descontarMontoPorEstacionamiento(est.getMontoPorTiempoUtilizado( est.getHoraFin()));
-		est.getSem().notificarFinEstacionamiento();
+		est.getSem().notificarFinEstacionamiento(est);
 			//}
 		
 		

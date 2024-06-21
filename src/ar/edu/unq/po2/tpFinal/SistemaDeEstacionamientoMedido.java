@@ -118,12 +118,12 @@ public class SistemaDeEstacionamientoMedido {
 
 	// METHODS
 
-	public void notificarInicioEstacionamiento() {
-		suscriptores.forEach(sub -> sub.notificarInicioEstacionamiento());
+	public void notificarInicioEstacionamiento(Estacionamiento e) {
+		suscriptores.forEach(sub -> sub.notificarInicioEstacionamiento(e));
 	}
 
-	public void notificarFinEstacionamiento() {
-		suscriptores.forEach(sub -> sub.notificarFinEstacionamiento());
+	public void notificarFinEstacionamiento(Estacionamiento e) {
+		suscriptores.forEach(sub -> sub.notificarFinEstacionamiento(e));
 	}
 
 	public void añadirInfraccion(String patente, Inspector inspec) {
@@ -142,7 +142,7 @@ public class SistemaDeEstacionamientoMedido {
 		
 		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
 		this.getEstacionamientosVigentes().clear();
-		this.notificarFinEstacionamiento();
+	//	this.notificarFinEstacionamiento();
 		
 	}
 	public void añadirCompra(Compra compra) {
@@ -154,7 +154,7 @@ public class SistemaDeEstacionamientoMedido {
 	}
 	public void añadirEstacionamiento(Estacionamiento estacionamiento) {
 		estacionamientosRegistrados.add(estacionamiento);
-		this.notificarInicioEstacionamiento();
+		this.notificarInicioEstacionamiento(estacionamiento);
 	}
 
 	

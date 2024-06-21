@@ -116,7 +116,7 @@ public class AppEstacionamiento  implements MovementSensor {
 	}
 
 	public boolean hayCreditoDisponible() {
-		return this.getSaldo() > 40;//sem.getPrecioTotalDeFranja();
+		return this.getSaldo() >= 40;//sem.getPrecioTotalDeFranja();
 	}
 
 	public int maximoDeHoras() {

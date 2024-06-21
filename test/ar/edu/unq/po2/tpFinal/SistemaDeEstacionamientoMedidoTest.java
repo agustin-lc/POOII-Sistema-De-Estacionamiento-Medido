@@ -71,7 +71,7 @@ class SistemaDeEstacionamientoMedidoTest {
         boolean resultado = sistema.poseeEstacionamientoVigente("ABC123");
 
         assertTrue(resultado);
-        verify(suscriptorMock).notificarInicioEstacionamiento();
+        verify(suscriptorMock).notificarInicioEstacionamiento(estacionamientoMock);
     }
 
 	@Test
@@ -111,7 +111,7 @@ class SistemaDeEstacionamientoMedidoTest {
 
 		assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento1));
 		assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento2));
-		verify(suscriptorMock, times(1)).notificarFinEstacionamiento();
+		verify(suscriptorMock, times(1)).notificarFinEstacionamiento(estacionamiento1);
 	}
 
 	// hacer test todos celulares
