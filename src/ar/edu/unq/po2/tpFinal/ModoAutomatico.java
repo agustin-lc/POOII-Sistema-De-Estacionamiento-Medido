@@ -45,6 +45,7 @@ public class ModoAutomatico implements IModoApp {
 	public void driving(AppEstacionamiento appEstacionamiento) {
 		// TODO Auto-generated method stub
 		appEstacionamiento.movimientoE.driving(appEstacionamiento);
+		
 	}
 	
 	
