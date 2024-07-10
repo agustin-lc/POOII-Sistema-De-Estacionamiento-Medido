@@ -19,9 +19,8 @@ public class AppEstacionamiento  implements MovementSensor {
 		this.sem = sem;  
 		sem.agregarCelular(this);
 		//this.movimientoE(new )
-		asistencia = false;
 		movimientoE = new Driving();
-		movimientoE.getTheApp(this);
+		asistencia = false;
 	}
 	
 	public EstacionamientoViaApp crearEstacionamiento() {
@@ -76,7 +75,7 @@ public class AppEstacionamiento  implements MovementSensor {
 	public void cambiarModo(IModoApp modo) {
 		this.setModo(modo);
 	//	this.movimientoE = new Driving();
-		modo.driving(this);
+		//modo.driving();
 	}
 
 	public String getNumero() {

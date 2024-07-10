@@ -6,7 +6,7 @@ public abstract class EstadoMovimiento {
 
 	public abstract void driving();
 
-	public void getTheApp(AppEstacionamiento app) {
+	public void setApp(AppEstacionamiento app) {
 		// TODO Auto-generated method stub
 		this.app = app;
 	}
