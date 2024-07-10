@@ -69,6 +69,7 @@ class SistemaDeEstacionamientoMedidoTest {
 
 	@Test
 	void testQuitarSuscriptor() {
+		sistema.añadirSuscriptor(suscriptorMock);
 		sistema.removerSuscriptor(suscriptorMock);
 		assertFalse(sistema.getSuscriptores().contains(suscriptorMock));
 	}
