@@ -1,10 +1,16 @@
 package ar.edu.unq.po2.tpFinal;
 public abstract class EstadoMovimiento {
 
-//	public abstract void walking(EstacionamientoViaApp app);
+	public AppEstacionamiento app;
+	public abstract void walking();
 
-//	public abstract void driving(EstacionamientoViaApp app);
+	public abstract void driving();
 
-	public abstract void driving(AppEstacionamiento app);
-	public abstract void walking(AppEstacionamiento app);
+	public void getTheApp(AppEstacionamiento app) {
+		// TODO Auto-generated method stub
+		this.app = app;
+	}
+
+//	public abstract void driving(AppEstacionamiento app);
+//	public abstract void walking(AppEstacionamiento app);
 }

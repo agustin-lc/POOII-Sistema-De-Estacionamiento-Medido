@@ -4,11 +4,9 @@ public interface IModoApp {
 	void inicioDeEstacionamiento(AppEstacionamiento estacionamientoApp);
 
 	void finDeEstacionamiento(AppEstacionamiento estacionamientoApp);
-//	void driving(EstacionamientoViaApp app);
-	//void walking(EstacionamientoViaApp app);
 
-	void walking(AppEstacionamiento appEstacionamiento);
-	void driving(AppEstacionamiento appEstacionamiento);
+	void cambioACaminar(AppEstacionamiento estacionamientoApp);
 
+	void cambioAManejar(AppEstacionamiento estacionamientoApp);
 	
 }

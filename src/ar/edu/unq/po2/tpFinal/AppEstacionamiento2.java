@@ -1,6 +1,6 @@
 package ar.edu.unq.po2.tpFinal;
 
-public class AppEstacionamiento  implements MovementSensor {
+public class AppEstacionamiento2  implements MovementSensor {
 	protected IModoApp modo;//verificar conexiones con modos
 	private String patente;
 	private String numero;
@@ -11,7 +11,7 @@ public class AppEstacionamiento  implements MovementSensor {
 
 	private EstacionamientoViaApp estacionamiento;
 	
-	public AppEstacionamiento(String patente, String numero,SistemaDeEstacionamientoMedido sem) {
+	public AppEstacionamiento2(String patente, String numero,SistemaDeEstacionamientoMedido sem) {
 		this.setModo(new ModoManual()); // por defecto manual
 		this.patente = patente;
 	//	this.horaInicio = horaInicio;
@@ -32,25 +32,19 @@ public class AppEstacionamiento  implements MovementSensor {
 	}
 	
 	
-	
-	
+	public void walking(){
+	modo.walking();
+	}
+	public void driving(){
+		modo.driving();
+		}
 	public void inicioDeEstacionamiento() {
 		modo.inicioDeEstacionamiento(this);
 	}
 	public void finEstacionamiento() {
 		modo.finDeEstacionamiento(this);
 	}
-	@Override
-	public void walking(){
-	movimientoE.walking();
-	}//hacer driving
-	@Override
-	public void driving(){
-	movimientoE.driving();
-	}
-	
-	
-	
+
 	public EstacionamientoViaApp getEstacionamiento() {
 		return estacionamiento;
 	}
@@ -114,16 +108,6 @@ public class AppEstacionamiento  implements MovementSensor {
 	public int maximoDeHoras() {
 		int maxHoras = (int) ((getSaldo() / getSem().getPrecioPorHora())); 
 		return maxHoras;
-	}
-
-	public void cambioACaminar() {
-		// TODO Auto-generated method stub
-		this.modo.cambioACaminar(this);
-	}
-
-	public void cambioAManejar() {
-		// TODO Auto-generated method stub
-		this.modo.cambioAManejar(this);
 	}
 	
 	
