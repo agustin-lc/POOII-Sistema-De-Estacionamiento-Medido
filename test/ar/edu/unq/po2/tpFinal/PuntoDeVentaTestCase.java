@@ -44,7 +44,7 @@ public class PuntoDeVentaTestCase {
 	void testNuevaCompraPierdeVigencia() {
 		sem.avanzarHorario(10);
 		puntoDeVenta.registrarCompraPuntual(4, "ABC 157");
-		Estacionamiento est = sem.getEstacionamientosRegistrados().getFirst();
+		Estacionamiento est = sem.getEstacionamientosRegistrados().get(0);
 		sem.avanzarHorario(4);
 		assertFalse(est.estaVigente());
 

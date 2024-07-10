@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 class CompraVirtualTest {
 
 	SistemaDeEstacionamientoMedido sem;
@@ -14,36 +13,37 @@ class CompraVirtualTest {
 	ZonaDeEstacionamiento zona;
 	Inspector inspector;
 	AppEstacionamiento celular;
+
 	@BeforeEach
 	void setUp() throws Exception {
 		sem = new SistemaDeEstacionamientoMedido();
 		inspector = new Inspector("123423441", zona, sem);
 		zona = new ZonaDeEstacionamiento(inspector, sem);
-		celular = new AppEstacionamiento("axz 990","12121212", sem);
+		celular = new AppEstacionamiento("axz 990", "12121212", sem);
 		punto = new PuntoDeVenta(sem, zona);
-		
+
 		sem.setHorario(8);
 	}
 
 	@Test
 	void testCompraEstacionamientoPor3HorasEnManual() {
 		punto.recargarCredito(celular.getNumero(), 200);
-		sem.avanzarHorario(1);//reloj 9:00
+		sem.avanzarHorario(1);// reloj 9:00
 		celular.inicioDeEstacionamiento();
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
-		
+
 		sem.avanzarHorario(3);
 		celular.finEstacionamiento();
 
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
 
-	//	System.out.print("total consumido es " + celular.getEstacionamiento().getMontoPorTiempoUtilizado(sem.getHorario()));
-	
-	
+		// System.out.print("total consumido es " +
+		// celular.getEstacionamiento().getMontoPorTiempoUtilizado(sem.getHorario()));
+
 	}
-	
+
 	@Test
 	void testCompraEstacionamientoHastaFin() {
 		punto.recargarCredito(celular.getNumero(), 700);
@@ -51,7 +51,7 @@ class CompraVirtualTest {
 		celular.inicioDeEstacionamiento();
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
-		
+
 		sem.avanzarHorario(13);
 
 		sem.finalizarEstacionamientos();
@@ -59,7 +59,8 @@ class CompraVirtualTest {
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
 
-		System.out.print("total consumido es " + celular.getEstacionamiento().getMontoPorTiempoUtilizado(sem.getHorario()));
+		System.out.print(
+				"total consumido es " + celular.getEstacionamiento().getMontoPorTiempoUtilizado(sem.getHorario()));
 	}
 
 	@Test
@@ -69,20 +70,21 @@ class CompraVirtualTest {
 		assertFalse(celular.getEstacionamiento().estaVigente());
 		assertTrue(sem.getEstacionamientosRegistrados().size() == 0);
 	}
-	
+
 	@Test
 	void testCambiaAModoAutomatico() {
-		//EstadoMovimiento estado = new Driving();
-		//estado = new Driving();
+		// EstadoMovimiento estado = new Driving();
+		// estado = new Driving();
 		punto.recargarCredito(celular.getNumero(), 5000);
 		celular.cambiarModo(new ModoAutomatico());
 		celular.alternarAsistencia();
-	//	celular.setMovimientoE(estado);
+		// celular.setMovimientoE(estado);
+		celular.driving();
+		celular.driving();
 		celular.driving();
 		celular.driving();
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 0);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
-		celular.walking();
 		celular.walking();
 		assertEquals(sem.getEstacionamientosRegistrados().size(), 1);
 		assertEquals(sem.getEstacionamientosVigentes().size(), 1);
@@ -91,6 +93,7 @@ class CompraVirtualTest {
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
 		assertFalse(celular.getEstacionamiento().estaVigente());
 	}
+
 	@Test
 	void testModoAutomaticoYNoHaySaldoMasDe2Horas() {
 		punto.recargarCredito(celular.getNumero(), 80);
@@ -108,4 +111,3 @@ class CompraVirtualTest {
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
 	}
 }
-

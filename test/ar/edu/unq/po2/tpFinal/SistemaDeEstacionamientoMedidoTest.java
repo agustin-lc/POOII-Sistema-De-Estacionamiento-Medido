@@ -2,6 +2,7 @@ package ar.edu.unq.po2.tpFinal;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -27,27 +28,34 @@ import ar.edu.unq.po2.tpFinal.ZonaDeEstacionamiento;
 class SistemaDeEstacionamientoMedidoTest {
 	private SistemaDeEstacionamientoMedido sistema;
 	private ISuscriptor suscriptorMock;
-
-	Estacionamiento estacionamientoMock;
+	private Estacionamiento estacionamiento1;
+	private Estacionamiento estacionamiento2;
+	private Estacionamiento estacionamientoMock;
+	private AppEstacionamiento celular1;
+	private AppEstacionamiento celular2;
+	private AppEstacionamiento celular3;
 
 	@BeforeEach
 	void setUp() {
 		sistema = new SistemaDeEstacionamientoMedido();
 		suscriptorMock = mock(ISuscriptor.class);
 		estacionamientoMock = mock(Estacionamiento.class);
+		estacionamiento1 = mock(Estacionamiento.class);
+		estacionamiento2 = mock(Estacionamiento.class);
+		celular1 = new AppEstacionamiento("s", "1212123", sistema);
+		celular2 = new AppEstacionamiento("1f", "4", sistema);
+		celular3 = new AppEstacionamiento("j3", "1414", sistema);
 	}
-	
+
 	@Test
 	void testCelulares() {
-		AppEstacionamiento c1 = new AppEstacionamiento("s", "1212123", sistema);
-		AppEstacionamiento c2 = new AppEstacionamiento("1f", "4", sistema);
-		AppEstacionamiento c3 = new AppEstacionamiento("j3", "1414", sistema);
+
 		ZonaDeEstacionamiento zona = new ZonaDeEstacionamiento(null, sistema);
 		PuntoDeVenta p = new PuntoDeVenta(sistema, zona);
 		p.recargarCredito("1212123", 300);
 		p.recargarCredito("4", 800);
 		p.recargarCredito("1414", 100);
-		assertEquals(sistema.creditoDeTodos(),1200);
+		assertEquals(sistema.creditoDeTodos(), 1200);
 	}
 
 	@Test
@@ -56,77 +64,53 @@ class SistemaDeEstacionamientoMedidoTest {
 		sistema.añadirSuscriptor(suscriptorMock);
 
 		assertTrue(sistema.getSuscriptores().contains(suscriptorMock));
+
+	}
+
+	@Test
+	void testQuitarSuscriptor() {
 		sistema.removerSuscriptor(suscriptorMock);
 		assertFalse(sistema.getSuscriptores().contains(suscriptorMock));
 	}
 
 	@Test
-    void testPoseeEstacionamientoVigente() {
-		sistema.añadirSuscriptor(suscriptorMock);
-        when(estacionamientoMock.getPatente()).thenReturn("ABC123");
-        when(estacionamientoMock.estaVigente()).thenReturn(true);
+	void testPoseeEstacionamientoVigente() {
+		sistema.añadirEstacionamiento(estacionamientoMock);
+		when(estacionamientoMock.getPatente()).thenReturn("ABC123");
+		when(estacionamientoMock.estaVigente()).thenReturn(true);
 
-        sistema.añadirEstacionamiento(estacionamientoMock);
-
-        boolean resultado = sistema.poseeEstacionamientoVigente("ABC123");
-
-        assertTrue(resultado);
-        verify(suscriptorMock).notificarInicioEstacionamiento(estacionamientoMock);
-    }
+		assertTrue(sistema.poseeEstacionamientoVigente("ABC123"));
+	}
 
 	@Test
     void testNoPoseeEstacionamientoVigente() {
       
         when(estacionamientoMock.getPatente()).thenReturn("XYZ789");
         when(estacionamientoMock.estaVigente()).thenReturn(false);
-
-        sistema.añadirEstacionamiento(estacionamientoMock);
-
-        boolean resultado = sistema.poseeEstacionamientoVigente("ABC123");
-
-        assertFalse(resultado);
+        
+        assertFalse(sistema.poseeEstacionamientoVigente("XYZ789"));
     }
 
 	@Test
 	void testFinalizarEstacionamientos() {
-
-		SistemaDeEstacionamientoMedido sistema = new SistemaDeEstacionamientoMedido();
-		ISuscriptor suscriptorMock = mock(ISuscriptor.class);
-		Estacionamiento estacionamiento1 = mock(Estacionamiento.class);
-		Estacionamiento estacionamiento2 = mock(Estacionamiento.class);
-
-		when(estacionamiento1.getPatente()).thenReturn("ABC123");
-		when(estacionamiento1.getHoraInicio()).thenReturn(LocalDateTime.now().minusHours(1));
-		when(estacionamiento1.getHoraFin()).thenReturn(LocalDateTime.now().plusHours(1));
-
-		when(estacionamiento2.getPatente()).thenReturn("XYZ789");
-		when(estacionamiento2.getHoraInicio()).thenReturn(LocalDateTime.now().minusHours(2));
-		when(estacionamiento2.getHoraFin()).thenReturn(LocalDateTime.now().plusHours(2));
-
 		sistema.añadirSuscriptor(suscriptorMock);
+
 		sistema.añadirEstacionamiento(estacionamiento1);
 		sistema.añadirEstacionamiento(estacionamiento2);
-
+		verify(suscriptorMock, times(1)).notificarInicioEstacionamiento(estacionamiento1);
+		verify(suscriptorMock, times(1)).notificarInicioEstacionamiento(estacionamiento2);
 		sistema.finalizarEstacionamientos();
-
 		assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento1));
 		assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento2));
-		verify(suscriptorMock, times(1)).notificarFinEstacionamiento(estacionamiento1);
+
 	}
 
 	// hacer test todos celulares
 	@Test
 	void testTodosLosCelulares() {
-		AppEstacionamiento cel1 = mock(AppEstacionamiento.class);
-		AppEstacionamiento cel2 = mock(AppEstacionamiento.class);
-		AppEstacionamiento cel3 = mock(AppEstacionamiento.class);
-
 		// when(cel1.getNumero())
-		sistema.agregarCelular(cel3);
-		sistema.agregarCelular(cel1);
-		sistema.agregarCelular(cel2);
 		assertEquals(sistema.getCelulares().size(), 3);
-
+		// añadidos inicialmente al setearse
 	}
 
 	@Test
@@ -157,12 +141,13 @@ class SistemaDeEstacionamientoMedidoTest {
 		Inspector inspect = mock(Inspector.class);
 		ZonaDeEstacionamiento zona = mock(ZonaDeEstacionamiento.class);
 		when(zona.getInspector()).thenReturn(inspect);
+
 		sistema.añadirZonaEstacionamiento(zona);
 		assertTrue(sistema.getInspectores().contains(inspect));
 	}
 
 	@Test
-	void testGetPrecioPorHora() {
+	void testCambioDePrecioPorHora() {
 		double precioXH = 50;
 		sistema.setPrecioPorHora(precioXH);
 		assertEquals(sistema.getPrecioPorHora(), precioXH);

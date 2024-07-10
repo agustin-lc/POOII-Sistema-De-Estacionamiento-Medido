@@ -35,15 +35,18 @@ public class SistemaDeEstacionamientoMedido {
 		comprasRegistradas = new ArrayList<Compra>();
 		celulares = new ArrayList<AppEstacionamiento>();
 	}
+
 	public void avanzarHorario(int horas) {
-	horario = horario.plusHours(horas);
-	if(horario.getHour() >= 20) {
-		this.finalizarEstacionamientos();
+		horario = horario.plusHours(horas);
+		if (horario.getHour() >= 20) {
+			this.finalizarEstacionamientos();
+		}
 	}
-	}
+
 	public LocalDateTime getHorario() {
 		return horario;
 	}
+
 	public void setHorario(int h) {
 		this.horario = LocalDateTime.of(LocalDate.now(), LocalTime.of(h, 0));
 	}
@@ -52,6 +55,7 @@ public class SistemaDeEstacionamientoMedido {
 	public List<Estacionamiento> getEstacionamientosRegistrados() {
 		return estacionamientosRegistrados;
 	}
+
 	public List<ISuscriptor> getSuscriptores() {
 		return suscriptores;
 	}
@@ -85,7 +89,8 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public List<Estacionamiento> getEstacionamientosVigentes() {
-		 List<Estacionamiento> toReturn = estacionamientosRegistrados.stream().filter(e -> e.estaVigente()).collect(Collectors.toList());
+		List<Estacionamiento> toReturn = estacionamientosRegistrados.stream().filter(e -> e.estaVigente())
+				.collect(Collectors.toList());
 		return toReturn;
 	}
 
@@ -111,7 +116,7 @@ public class SistemaDeEstacionamientoMedido {
 			suscriptores.remove(suscriptor);
 		}
 	}
-	
+
 	public void añadirZonaEstacionamiento(ZonaDeEstacionamiento zona) {
 		zonasDeEstacionamiento.add(zona);
 	}
@@ -139,12 +144,13 @@ public class SistemaDeEstacionamientoMedido {
 	}
 
 	public void finalizarEstacionamientos() {
-		
+
 		this.getEstacionamientosVigentes().stream().forEach(e -> e.finalizar(this.getCierreFranja()));
 		this.getEstacionamientosVigentes().clear();
-	//	this.notificarFinEstacionamiento();
-		
+		// this.notificarFinEstacionamiento();
+
 	}
+
 	public void añadirCompra(Compra compra) {
 		this.comprasRegistradas.add(compra);
 	}
@@ -152,12 +158,12 @@ public class SistemaDeEstacionamientoMedido {
 	public List<Compra> getComprasRegistradas() {
 		return comprasRegistradas;
 	}
+
 	public void añadirEstacionamiento(Estacionamiento estacionamiento) {
 		estacionamientosRegistrados.add(estacionamiento);
 		this.notificarInicioEstacionamiento(estacionamiento);
 	}
 
-	
 	public List<AppEstacionamiento> getCelulares() {
 		return this.celulares;
 	}
@@ -173,15 +179,15 @@ public class SistemaDeEstacionamientoMedido {
 		int monto = 0;
 		List<AppEstacionamiento> cels = this.getCelulares();
 		for (AppEstacionamiento c : cels) {
-				monto = (int) (monto + c.getSaldo());
-			}
+			monto = (int) (monto + c.getSaldo());
+		}
 		return monto;
 
-		}
-	
+	}
+
 	public void agregarCelular(AppEstacionamiento celular) {
 		// TODO Auto-generated method stub
 		celulares.add(celular);
 	}
 
-	}
+}
