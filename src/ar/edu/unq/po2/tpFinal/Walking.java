@@ -10,8 +10,9 @@ public class Walking extends EstadoMovimiento {
 	@Override
 	public void driving() {
 		//this.app.modo.driving();
-		app.cambioAManejar();
-		app.setMovimientoE(new Driving());
+		this.app.cambioAManejar();
+	//	this.app.setMovimientoE(new Driving());
+		app.setMovimientoE(new Walking());
 	}
 	
 	

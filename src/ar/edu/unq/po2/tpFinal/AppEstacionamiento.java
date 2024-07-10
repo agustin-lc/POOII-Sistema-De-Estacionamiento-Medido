@@ -21,6 +21,7 @@ public class AppEstacionamiento  implements MovementSensor {
 		//this.movimientoE(new )
 		movimientoE = new Driving();
 		asistencia = false;
+		movimientoE.setApp(this);
 	}
 	
 	public EstacionamientoViaApp crearEstacionamiento() {
@@ -90,6 +91,8 @@ public class AppEstacionamiento  implements MovementSensor {
 
 	public void setMovimientoE(EstadoMovimiento movimientoE) {
 		this.movimientoE = movimientoE;
+		movimientoE.setApp(this);
+
 	}
 
 	public Boolean getAsistencia() {
