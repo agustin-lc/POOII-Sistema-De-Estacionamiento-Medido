@@ -109,9 +109,9 @@ class SistemaDeEstacionamientoMedidoTest {
 
 		sistema.finalizarEstacionamientos();
 
+		verify(suscriptorMock).notificarFinEstacionamiento(estacionamiento1);
 		assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento1));
 		assertFalse(sistema.getEstacionamientosVigentes().contains(estacionamiento2));
-		verify(suscriptorMock, times(1)).notificarFinEstacionamiento(estacionamiento1);
 	}
 
 	// hacer test todos celulares
