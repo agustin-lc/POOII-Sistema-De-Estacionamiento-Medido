@@ -7,7 +7,7 @@ public class Driving extends EstadoMovimiento {
 
 		this.app.cambioACaminar();
 		//this.app.setMovimientoE(new Walking());
-		app.setMovimientoE(new Driving());
+		app.setMovimientoE(new Walking());
 	}
 
 	@Override

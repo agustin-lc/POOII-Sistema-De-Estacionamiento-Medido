@@ -46,11 +46,11 @@ public class ModoAutomatico implements IModoApp {
 			if (app.getSaldo() >= 520){ 
 			
 				est.horaFin  = app.getSem().getCierreFranja();//fija hora del fin maximo
-				System.out.println("Estacionamiento hasta las 19:59");
+				System.out.println("Estacionamiento hasta las 19:59 (c)");
 				est.setEstaVigente(true);//activa estacionamiento
 				}else {//activa estacionamiento hasta el maximo de credito
 					est.horaFin = est.horaInicio.plusHours(app.maximoDeHoras() );
-					System.out.println("Estacionamiento hasta las "+ est.horaInicio.plusHours( app.maximoDeHoras()));
+					System.out.println("Estacionamiento hasta las (d) "+ est.horaInicio.plusHours( app.maximoDeHoras()));
 					est.setEstaVigente(true);
 				}
 		}else {

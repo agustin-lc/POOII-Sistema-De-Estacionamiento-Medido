@@ -12,7 +12,7 @@ public class Walking extends EstadoMovimiento {
 		//this.app.modo.driving();
 		this.app.cambioAManejar();
 	//	this.app.setMovimientoE(new Driving());
-		app.setMovimientoE(new Walking());
+		app.setMovimientoE(new Driving());
 	}
 	
 	
