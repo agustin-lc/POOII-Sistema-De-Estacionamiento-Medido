@@ -20,7 +20,7 @@ public class AppEstacionamiento  implements MovementSensor {
 		sem.agregarCelular(this);
 		//this.movimientoE(new )
 		movimientoE = new Driving();
-		asistencia = false;
+		asistencia = false;//Por defecto desactivado
 		movimientoE.setApp(this);
 	}
 	
