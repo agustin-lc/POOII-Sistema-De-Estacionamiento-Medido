@@ -48,6 +48,7 @@ public class ModoManual implements IModoApp {
 	public void cambioACaminar(AppEstacionamiento estacionamientoApp) {
 		// TODO Auto-generated method stub
 		//avisar
+		System.out.print("Recordar activar estacionamiento");
 	}
 
 
@@ -56,6 +57,7 @@ public class ModoManual implements IModoApp {
 	public void cambioAManejar(AppEstacionamiento estacionamientoApp) {
 		// TODO Auto-generated method stub
 		//avisar
+		System.out.print("Recordar desactivar estacionamiento");
 	}
 	
 

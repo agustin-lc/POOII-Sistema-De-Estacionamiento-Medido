@@ -93,6 +93,14 @@ class CompraVirtualTest {
 		assertEquals(sem.getEstacionamientosVigentes().size(), 0);
 		assertFalse(celular.getEstacionamiento().estaVigente());
 	}
+	@Test
+	void testNoCambiaModoYReciveAlerta() {
+		celular.alternarAsistencia();
+		celular.driving();
+		celular.walking();
+		celular.driving();
+		assertTrue(celular.getAsistencia());
+	}
 
 	@Test
 	void testModoAutomaticoYNoHaySaldoMasDe2Horas() {
